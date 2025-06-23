@@ -1,0 +1,135 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main_features.presentation.detail.DetailActivity">
+
+    <!-- Top App Bar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/sky_blue"
+        android:elevation="4dp"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/tentang_event"
+        app:titleCentered="true"
+        app:titleTextColor="@android:color/white"
+        app:popupTheme="@style/ThemeOverlay.Material3.Light"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- CardView sebagai bingkai gambar -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardEventImage"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/ivEventImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Event Name -->
+    <TextView
+        android:id="@+id/tvEventName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nama Event"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/cardEventImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Event Date -->
+    <TextView
+        android:id="@+id/tvEventDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Event"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvEventName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Event Price -->
+    <TextView
+        android:id="@+id/tvEventPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Rp 0"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/tvEventDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- Event Quota -->
+    <TextView
+        android:id="@+id/tvEventQuota"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Kuota: 0/10"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/tvEventPrice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Event Description -->
+    <TextView
+        android:id="@+id/tvEventDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Deskripsi Event"
+        android:textSize="16sp"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvEventQuota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Buy Quota Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonBeli"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_margin="28dp"
+        android:background="@drawable/blue_button_bg"
+        android:text="@string/daftar_sekarang"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvEventDescription"
+        android:layout_marginTop="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

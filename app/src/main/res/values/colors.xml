@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#1C1C1C</color>
+    <color name="white">#FFFAFA</color>
+    <color name="pink">#FF79AB</color>
+
+    <color name="sky_blue">#49C0FF</color>
+    <color name="primary_blue">#00BFFF</color>
+    <color name="magenta">#FF00FF</color>
+    <color name="gray">#808080</color>
+    <color name="blue">#0000FF</color>
+
+    <color name="primaryColor">#00BFFF</color>
+    <color name="whiteCardColor">#FFFFFF</color>
+    <color name="primaryTextColor">#333333</color>
+    <color name="errorColor">#FF5252</color>
+</resources>

@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/textNamaEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Event"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textJadwalEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jadwal Event" />
+
+    <TextView
+        android:id="@+id/textJumlahTiket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jumlah: 2" />
+
+    <TextView
+        android:id="@+id/textHargaEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Harga: Rp50.000" />
+
+</LinearLayout>

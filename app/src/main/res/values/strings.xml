@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Kidsnesia</string>
+    <string name="title_welcome_page">Selamat Datang Di</string>
+    <string name="greetingWelcome">Selamat Datang \ndi</string>
+    <string name="regist">Daftar</string>
+    <string name="login">Login</string>
+    <string name="mari_belajar_sambil_bermain">Belajar Sambil Bermain</string>
+    <string name="greeting">Selamat Datang di Kidsnesia!</string>
+    <string name="userName">Masukkan Nama Lengkap</string>
+    <string name="email">Email\n</string>
+    <string name="password">Kata Sandi</string>
+    <string name="no_hp">No Hp</string>
+    <string name="singup_login_hint">Sudah Punya Akun? Masuk</string>
+    <string name="nav_home">Dashborad</string>
+    <string name="nav_video">Video</string>
+    <string name="nav_event">Event</string>
+    <string name="nav_profile">Profile</string>
+    <string name="selamat_datang_di_kidsnesia">Selamat Datang di\nKidsnesia!</string>
+    <string name="daftar">Daftar</string>
+    <string name="sudah_punya_akun">Sudah punya akun? Masuk</string>
+    <string name="selamat_datang_kembali">Selamat Datang Kembali!</string>
+    <string name="belum_punya_akun_daftar">Belum punya akun? Daftar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="hal_dashboard">Halo,</string>
+    <string name="about_kidsnesia">Tentang Kidsnesia</string>
+    <string name="followed_event">Event yang di ikuti</string>
+
+    <string name="kidsnesia_description">Kidsnesia adalah pusat wisata edukasi interaktif untuk anak-anak dengan menghadirkan program unggulan yang menggabungkan pendidikan digital, eksplorasi, budaya Indonesia, serta pengembangan kreativitas dan keterampilan melalui belajar sambil bermain</string>
+    <string name="nama_event">Nama Event</string>
+    <string name="harga">Harga:</string>
+    <string name="kategori">Kategori:</string>
+    <string name="kuota">Kuota:</string>
+    <string name="tentang_event">Tentang Event</string>
+    <string name="daftar_sekarang">Daftar Sekarang</string>
+    <string name="member_premium">Member Premium</string>
+
+    <string name="desc_program"><![CDATA[
+    <font color="#FF79AB"><b>Kidsnesia</b></font> adalah pusat wisata edukasi interaktif untuk anak-anak dengan menghadirkan
+    <font color="#FF79AB"><b>Program Unggulan</b></font> yang menggabungkan
+    <font color="#FF79AB"><b>Pendidikan digital, eksplorasi budaya Indonesia</b></font>.
+]]></string>
+
+
+    <string name="lanjutkan">Lanjutkan</string>
+    <string name="keluar">Keluar</string>
+
+    <string name="pilih_metode_pembayaran">Pilih Metode Pembayaran</string>
+    <string name="konfirmasi">Konfirmasi</string>
+    <string name="tagihan_bayar">Silahkan melakukan pembayaran dengan total :</string>
+
+    <string name="empty_email">Email cannot be empty</string>
+    <string name="invalid_email">Invalid email format</string>
+
+    <string name="empy_pass">Password cannot be empty</string>
+    <string name="no_spacy_pass">Password cannot contain spaces</string>
+    <string name="pass_less_than_8">Password must be at least 8 characters long</string>
+
+    <string name="total_bayar">Total Bayar</string>
+
+    <string-array name="metode_pembayaran_array">
+        <item>Pilih Metode Pembayaran</item> <!-- Tambahkan item ini -->
+        <item>Dana</item>
+        <item>Gopay</item>
+        <item>Ovo</item>
+        <item>BSI</item>
+        <item>Mandiri</item>
+        <item>BNI</item>
+    </string-array>
+
+    <string name="text_otp">Enter the OTP\nwe sent you on the following email : </string>
+    <string name="didnt_receive_otp">Didn\'t receive the OTP? Resend OTP</string>
+    <string name="done_otp">DONE</string>
+
+</resources>

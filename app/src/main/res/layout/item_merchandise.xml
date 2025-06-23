@@ -1,0 +1,38 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="150dp"
+    android:layout_height="200dp"
+    android:layout_marginEnd="16dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    app:cardBackgroundColor="@color/white"> <!-- Ganti dengan warna yang diinginkan -->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Gambar Produk -->
+        <ImageView
+            android:id="@+id/imageProduct"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_maskot_kidsnesia" />
+
+        <!-- Nama Produk dengan Shadow -->
+        <TextView
+            android:id="@+id/textProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_gravity="bottom"
+            android:padding="8dp"
+            android:text="Nama Produk"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:background="@drawable/text_shadow_bg"
+            android:gravity="center" />
+    </FrameLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/sky_blue"
+    tools:context=".main_features.presentation.dashboard.DashboardFragment">
+
+
+    <TextView
+        android:id="@+id/textUName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hal_dashboard"
+        app:layout_constraintBottom_toBottomOf="@+id/imageUser"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toEndOf="@+id/imageUser"
+        app:layout_constraintTop_toTopOf="@+id/imageUser"
+        app:layout_constraintVertical_bias="0.709" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/ic_cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!-- LOGO KIDSNESIA DI PERPOTONGAN -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageUser"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="28dp"
+        android:background="@drawable/circle_border"
+        android:src="@drawable/foto_placeholder_profile"
+        app:shapeAppearanceOverlay="@style/CircleImageView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <ImageView
+        android:id="@+id/logo_kidsnesia"
+        android:layout_width="400dp"
+        android:layout_height="0dp"
+        android:elevation="20dp"
+        android:layout_marginBottom="-60dp"
+        android:src="@drawable/logo_kidsnesia"
+        app:layout_constraintBottom_toTopOf="@+id/background_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- BACKGROUND BOTTOM HANYA 3/4 LAYAR -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/background_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bottom_background_light"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/materialButton2"
+            android:layout_width="190dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/blue_button_dashboard"
+            android:text="Program Kidsnesia"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton3"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:text="3D Printing"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:background="@drawable/pink_button_dashboard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialButton2"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="28dp"
+            android:text="Kreasi Sablon"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:background="@drawable/pink_button_dashboard"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButton3"
+            app:layout_constraintTop_toBottomOf="@+id/materialButton2"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton4"
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="28dp"
+            android:text="Aku Cinta Indonesia"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:background="@drawable/pink_button_dashboard"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButton"
+            app:layout_constraintTop_toBottomOf="@+id/materialButton2"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton5"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:text="Programmer CIlik"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:background="@drawable/pink_button_dashboard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton3"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton6"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:text="Foto Studio"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:background="@drawable/pink_button_dashboard"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButton5"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton7"
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:text="Sewa Pakaian Adat"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:background="@drawable/pink_button_dashboard"
+            app:layout_constraintStart_toEndOf="@+id/appCompatButton6"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton4"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton2"
+            android:layout_width="190dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="70dp"
+            android:text="Foto Merchandise"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_button_dashboard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton"
+            android:textAllCaps="false" />
+
+        <!-- RecyclerView for Merchandise -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewMerchandise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="80dp"
+            android:layout_marginTop="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
