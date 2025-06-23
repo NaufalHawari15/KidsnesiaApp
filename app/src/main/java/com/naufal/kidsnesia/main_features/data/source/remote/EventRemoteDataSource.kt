@@ -4,6 +4,7 @@ import android.util.Log
 import com.naufal.kidsnesia.auth.data.source.remote.network.ApiResponse
 import com.naufal.kidsnesia.auth.data.source.remote.network.ApiService
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEventResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailProductResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.EventResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.ProductResponse
 import kotlinx.coroutines.Dispatchers
@@ -45,6 +46,19 @@ class EventRemoteDataSource(private val apiService: ApiService) {
                 emit(ApiResponse.Success(response))
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getDetailProduct(idMerch: String): Flow<ApiResponse<DetailProductResponse>> {
+        return flow {
+            try {
+                val response = apiService.getDetailProduct(idMerch)
+                emit(ApiResponse.Success(response))
+            }
+            catch (e: Exception) {
+                emit(ApiResponse.Error(toString()))
                 Log.e("RemoteDataSource", e.toString())
             }
         }.flowOn(Dispatchers.IO)

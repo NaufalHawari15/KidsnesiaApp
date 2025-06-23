@@ -13,6 +13,7 @@ import com.naufal.kidsnesia.main_features.domain.repository.IEventRepository
 import com.naufal.kidsnesia.main_features.domain.usecase.EventInteractor
 import com.naufal.kidsnesia.main_features.domain.usecase.EventUseCase
 import com.naufal.kidsnesia.main_features.presentation.dashboard.DashboardViewModel
+import com.naufal.kidsnesia.main_features.presentation.detail.DetailMerchViewModel
 import com.naufal.kidsnesia.main_features.presentation.detail.DetailViewModel
 import com.naufal.kidsnesia.main_features.presentation.event.EventViewModel
 
@@ -38,6 +39,7 @@ val viewModelModule = module {
     viewModel { EventViewModel(get()) }
     viewModel { DetailViewModel(get()) }
     viewModel { ProfileViewModel(get()) }
+    viewModel { DetailMerchViewModel(get()) }
 //    viewModel { PembelianViewModel(get(), get()) }
 //    viewModel { DetailPembayaranViewModel(get()) }
 //    viewModel { TranskasiViewModel(get()) }

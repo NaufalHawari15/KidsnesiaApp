@@ -12,7 +12,9 @@ import com.bumptech.glide.Glide
 import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.main_features.data.source.remote.response.ListEventItem
 
-class EventAdapter(private val events: List<ListEventItem>, private val onItemClick: (ListEventItem) -> Unit) :
+class EventAdapter(
+    private val events: List<ListEventItem>,
+    private val onItemClick: (ListEventItem) -> Unit) :
     RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
     inner class EventViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -72,5 +72,7 @@
     <string name="text_otp">Enter the OTP\nwe sent you on the following email : </string>
     <string name="didnt_receive_otp">Didn\'t receive the OTP? Resend OTP</string>
     <string name="done_otp">DONE</string>
+    <string name="detail_produk">Detail Produk</string>
+    <string name="pesan_sekarang">Pesan Sekarang</string>
 
 </resources>

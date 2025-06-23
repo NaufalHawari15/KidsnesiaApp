@@ -85,8 +85,6 @@ class   DetailActivity : AppCompatActivity() {
 
             Glide.with(this@DetailActivity)
                 .load(firstImage)
-                .placeholder(R.drawable.ic_maskot_kidsnesia)
-
                 .into(ivEventImage)
         }
 

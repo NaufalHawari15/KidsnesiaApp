@@ -8,6 +8,7 @@ import com.naufal.kidsnesia.auth.data.source.remote.response.RegisterRequest
 import com.naufal.kidsnesia.auth.data.source.remote.response.RegisterResponse
 import com.naufal.kidsnesia.auth.data.source.remote.response.ResendOtpResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEventResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailProductResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.EventResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.NotaResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.PelangganResponse
@@ -60,6 +61,11 @@ interface ApiService {
     @GET("merch")
     suspend fun getProduct(
     ): ProductResponse
+
+    @GET("merch/{idMerch}")
+    suspend fun getDetailProduct(
+        @Path("idMerch") idMerch: String
+    ): DetailProductResponse
 
 //    @POST("pembelian")
 //    suspend fun uploadBeli(

@@ -12,6 +12,8 @@ import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.databinding.FragmentDashboardBinding
 import com.naufal.kidsnesia.databinding.FragmentProfileBinding
+import com.naufal.kidsnesia.main_features.presentation.detail.DetailActivity
+import com.naufal.kidsnesia.main_features.presentation.detail.DetailMerchActivity
 import com.naufal.kidsnesia.ui.welcome.WelcomeActivity
 import org.koin.android.ext.android.get
 
@@ -19,6 +21,7 @@ class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DashboardViewModel = get()
+    private lateinit var productAdapter: MerchandiseAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +51,13 @@ class DashboardFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     val productList = resource.data?.listMerchandise?.filterNotNull() ?: emptyList()
-                    binding.recyclerViewMerchandise.adapter = MerchandiseAdapter(productList)
+                    productAdapter = MerchandiseAdapter(productList) { product ->
+                        val intent = Intent(requireContext(), DetailMerchActivity::class.java).apply {
+                            putExtra(DetailMerchActivity.EXTRA_PRODUCT_ID, product.idMerchandise.toString()) // Konversi ke String
+                        }
+                        startActivity(intent)
+                    }
+                    binding.recyclerViewMerchandise.adapter = productAdapter
                 }
                 is Resource.Error -> {
                     Toast.makeText(requireContext(), "Gagal memuat produk", Toast.LENGTH_SHORT).show()

@@ -11,7 +11,8 @@ import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.main_features.data.source.remote.response.ListMerchandiseItem
 
 class MerchandiseAdapter(
-    private val productList: List<ListMerchandiseItem>
+    private val productList: List<ListMerchandiseItem>,
+    private val onClick: (ListMerchandiseItem) -> Unit
 ) : RecyclerView.Adapter<MerchandiseAdapter.MerchandiseViewHolder>() {
 
     class MerchandiseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -33,6 +34,10 @@ class MerchandiseAdapter(
             .load(product.fotoMerchandise)
             .placeholder(R.drawable.ic_maskot_kidsnesia)
             .into(holder.imageProduct)
+
+        holder.itemView.setOnClickListener {
+            onClick(product)
+        }
     }
 
     override fun getItemCount(): Int = productList.size
