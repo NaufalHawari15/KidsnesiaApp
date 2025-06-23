@@ -1,6 +1,7 @@
 package com.naufal.kidsnesia.main_features.presentation.detail
 
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -15,13 +16,17 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.auth.data.Resource
+import com.naufal.kidsnesia.auth.data.source.local.UserPreference
 import com.naufal.kidsnesia.databinding.ActivityDetailBinding
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEvent
+import com.naufal.kidsnesia.purchase.data.source.remote.response.CartRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.ItemsEventItem
+import kotlinx.coroutines.flow.first
 
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
-class   DetailActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private val viewModel: DetailViewModel = get()
 
@@ -91,20 +96,6 @@ class   DetailActivity : AppCompatActivity() {
         binding.toolbar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
-
-//        binding.buttonBeli.setOnClickListener {
-//            val eventList = listOf( // Buat daftar event yang dikirim ke PembelianActivity
-//                ListEventItem(
-//                    idEvent = viewModel.eventDetail.value?.data?.detailEvent?.idEvent,
-//                    namaEvent = viewModel.eventDetail.value?.data?.detailEvent?.namaEvent,
-//                    kategori = viewModel.eventDetail.value?.data?.detailEvent?.kategori,
-//                    hargaEvent = viewModel.eventDetail.value?.data?.detailEvent?.hargaEvent,
-//                    fullImageUrl = viewModel.eventDetail.value?.data?.detailEvent?.fullImageUrl
-//                )
-//            )
-//            val intent = Intent(this, PembelianActivity::class.java)
-//            startActivity(intent)
-//        }
     }
 
     private fun showLoading(isLoading: Boolean) {

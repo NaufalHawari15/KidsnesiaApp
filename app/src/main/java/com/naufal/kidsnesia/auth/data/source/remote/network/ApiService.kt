@@ -13,6 +13,9 @@ import com.naufal.kidsnesia.main_features.data.source.remote.response.EventRespo
 import com.naufal.kidsnesia.main_features.data.source.remote.response.NotaResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.PelangganResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.ProductResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.CartRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.CartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartResponse
 
 
 import retrofit2.http.Body
@@ -66,6 +69,16 @@ interface ApiService {
     suspend fun getDetailProduct(
         @Path("idMerch") idMerch: String
     ): DetailProductResponse
+
+    @POST("event/cart")
+    suspend fun createCart(
+        @Header("Authorization") token: String,
+        @Body request: CartRequest
+    ): CartResponse
+
+    @GET("event/cart/listcart")
+    suspend fun getListCart() : ListCartResponse
+
 
 //    @POST("pembelian")
 //    suspend fun uploadBeli(

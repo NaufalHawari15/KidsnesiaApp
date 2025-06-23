@@ -39,7 +39,7 @@ val networkModule = module {
 
     single {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://ce70-180-251-1-152.ngrok-free.app/api/")
+            .baseUrl("https://facc-180-251-1-152.ngrok-free.app/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(get())
             .build()

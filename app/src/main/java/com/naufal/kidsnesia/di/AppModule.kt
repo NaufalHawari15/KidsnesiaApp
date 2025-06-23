@@ -16,6 +16,10 @@ import com.naufal.kidsnesia.main_features.presentation.dashboard.DashboardViewMo
 import com.naufal.kidsnesia.main_features.presentation.detail.DetailMerchViewModel
 import com.naufal.kidsnesia.main_features.presentation.detail.DetailViewModel
 import com.naufal.kidsnesia.main_features.presentation.event.EventViewModel
+import com.naufal.kidsnesia.purchase.data.source.PurchaseRepository
+import com.naufal.kidsnesia.purchase.domain.repository.IPurchaseRepository
+import com.naufal.kidsnesia.purchase.domain.usecase.PurchaseInteractor
+import com.naufal.kidsnesia.purchase.domain.usecase.PurchaseUseCase
 
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -27,8 +31,8 @@ val useCaseModule = module {
     single<IEventRepository> { EventRepository(get()) }
     factory<EventUseCase> { EventInteractor(get()) }
 
-//    single<IPurchaseRepository> { PurchaseRepository(get(), get())}
-//    factory<PurchaseUseCase> { PurchaseInteractor(get()) }
+    single<IPurchaseRepository> { PurchaseRepository(get(), get()) }
+    factory<PurchaseUseCase> { PurchaseInteractor(get()) }
 }
 
 val viewModelModule = module {
@@ -40,6 +44,7 @@ val viewModelModule = module {
     viewModel { DetailViewModel(get()) }
     viewModel { ProfileViewModel(get()) }
     viewModel { DetailMerchViewModel(get()) }
+//    viewModel { CartViewModel(get())}
 //    viewModel { PembelianViewModel(get(), get()) }
 //    viewModel { DetailPembayaranViewModel(get()) }
 //    viewModel { TranskasiViewModel(get()) }
