@@ -1,6 +1,8 @@
 package com.naufal.kidsnesia.purchase.domain.usecase
 
 import com.naufal.kidsnesia.auth.data.Resource
+import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartResponse
@@ -12,5 +14,9 @@ class PurchaseInteractor(private val purchaseRepository: IPurchaseRepository) : 
         return purchaseRepository.creatCart(token, request)
     }
 
-    override fun getListCart(): Flow<Resource<ListCartResponse>> = purchaseRepository.getListCart()
+    override suspend fun createCartMerch(token: String, request: CartMerchRequest): CartMerchResponse {
+        return purchaseRepository.createCartMerch(token, request)
+    }
+
+//    override fun getListCart(): Flow<Resource<ListCartResponse>> = purchaseRepository.getListCart()
 }

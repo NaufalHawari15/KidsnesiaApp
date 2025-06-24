@@ -21,6 +21,7 @@ import com.naufal.kidsnesia.databinding.ActivityDetailBinding
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEvent
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ItemsEventItem
+import com.naufal.kidsnesia.ui.bottomsheet.event.TicketBottomSheet
 import kotlinx.coroutines.flow.first
 
 import kotlinx.coroutines.launch
@@ -42,6 +43,12 @@ class DetailActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Event ID tidak ditemukan", Toast.LENGTH_SHORT).show()
             finish()
+        }
+
+        lifecycleScope.launch {
+            viewModel.loadingState.collect { isLoading ->
+                binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+            }
         }
 
         setupView()
@@ -95,6 +102,31 @@ class DetailActivity : AppCompatActivity() {
 
         binding.toolbar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.buttonBeli.setOnClickListener {
+            val currentEvent = viewModel.eventDetail.value
+            if (currentEvent is Resource.Success) {
+                val event = currentEvent.data?.detailEvent
+                if (event != null) {
+                    val bottomSheet = TicketBottomSheet(
+                        imageUrl = event.fotoEvent,
+                        maxKuota = event.kuota ?: 0
+                    ) { jumlahTiket ->
+                        viewModel.createCart(
+                            idEvent = event.idEvent ?: 0,
+                            jumlahTiket = jumlahTiket,
+                            onSuccess = {
+                                Toast.makeText(this, "Tiket berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+                            },
+                            onError = {
+                                Toast.makeText(this, "Gagal: $it", Toast.LENGTH_SHORT).show()
+                            }
+                        )
+                    }
+                    bottomSheet.show(supportFragmentManager, "TicketBottomSheet")
+                }
+            }
         }
     }
 

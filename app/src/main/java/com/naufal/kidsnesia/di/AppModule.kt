@@ -41,9 +41,11 @@ val viewModelModule = module {
     viewModel { OtpViewModel(get()) }
     viewModel { DashboardViewModel(get(), get()) }
     viewModel { EventViewModel(get()) }
-    viewModel { DetailViewModel(get()) }
+    viewModel { DetailViewModel(get(), get(), get()) }
     viewModel { ProfileViewModel(get()) }
-    viewModel { DetailMerchViewModel(get()) }
+    viewModel { DetailMerchViewModel(get(), get(), get()) }
+//    viewModel { CartViewModel(get(), get()) }
+//    viewModel { DetailCartViewModel(get(), get()) }
 //    viewModel { CartViewModel(get())}
 //    viewModel { PembelianViewModel(get(), get()) }
 //    viewModel { DetailPembayaranViewModel(get()) }

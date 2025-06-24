@@ -13,12 +13,15 @@ import com.naufal.kidsnesia.main_features.data.source.remote.response.EventRespo
 import com.naufal.kidsnesia.main_features.data.source.remote.response.NotaResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.PelangganResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.ProductResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.DeleteCartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartResponse
-
-
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
@@ -70,6 +73,12 @@ interface ApiService {
         @Path("idMerch") idMerch: String
     ): DetailProductResponse
 
+    @POST("merch/cart")
+    suspend fun createMerchCart(
+        @Header("Authorization") token: String,
+        @Body request: CartMerchRequest
+    ): CartMerchResponse
+
     @POST("event/cart")
     suspend fun createCart(
         @Header("Authorization") token: String,
@@ -77,8 +86,21 @@ interface ApiService {
     ): CartResponse
 
     @GET("event/cart/listcart")
-    suspend fun getListCart() : ListCartResponse
+    suspend fun getListCart(
+        @Header("Authorization") token: String
+    ): ListCartResponse
 
+    @GET("event/cart/{idPembelianEvent}")
+    suspend fun getDetailCart(
+        @Header("Authorization") token: String,
+        @Path("idPembelianEvent") idPembelianEvent: String
+    ): DetailCartResponse
+
+    @DELETE ("event/cart/{idPembelianEvent}")
+    suspend fun deleteCart(
+        @Header("Authorization") token: String,
+        @Path("idPembelianEvent") idPembelianEvent: Int
+    ): DeleteCartResponse
 
 //    @POST("pembelian")
 //    suspend fun uploadBeli(
@@ -112,4 +134,5 @@ interface ApiService {
 //    suspend fun getHistory(
 //        @Header("Authorization") token: String
 //    ): HistoryEventResponse
+
 }

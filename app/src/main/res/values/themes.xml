@@ -69,5 +69,10 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+
     <style name="Theme.Kidsnesia" parent="Base.Theme.Kidsnesia" />
 </resources>
