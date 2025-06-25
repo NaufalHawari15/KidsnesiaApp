@@ -6,6 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:paddingBottom="?attr/actionBarSize"
+    android:clipToPadding="false"
+    android:fillViewport="true"
     android:background="@color/sky_blue"
     tools:context=".main_features.presentation.dashboard.DashboardFragment">
 
@@ -16,14 +19,14 @@
         android:layout_height="wrap_content"
         android:text="@string/hal_dashboard"
         app:layout_constraintBottom_toBottomOf="@+id/imageUser"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/imageCart"
         app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toEndOf="@+id/imageUser"
         app:layout_constraintTop_toTopOf="@+id/imageUser"
         app:layout_constraintVertical_bias="0.709" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageCart"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginTop="24dp"
@@ -43,7 +46,7 @@
         android:src="@drawable/foto_placeholder_profile"
         app:shapeAppearanceOverlay="@style/CircleImageView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/imageCart"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -72,7 +75,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.appcompat.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/materialButton2"
             android:layout_width="190dp"
             android:layout_height="35dp"
@@ -192,11 +195,13 @@
             android:layout_marginTop="16dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
+            android:paddingBottom="96dp"
             android:clipToPadding="false"
             android:overScrollMode="never"
             app:layout_constraintTop_toBottomOf="@+id/appCompatButton2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,6 +31,9 @@ data class ListEventCartItem(
 
 data class CartEventItemItems(
 
+	@field:SerializedName("fotoEvent")
+	val fotoEvent: String? = null,
+
 	@field:SerializedName("hargaEvent")
 	val hargaEvent: Int? = null,
 

@@ -19,6 +19,7 @@ import com.naufal.kidsnesia.purchase.data.source.remote.response.CartRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.DeleteCartResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -89,6 +90,13 @@ interface ApiService {
     suspend fun getListCart(
         @Header("Authorization") token: String
     ): ListCartResponse
+
+    @GET("merch/cart/listcart")
+    suspend fun getListMerchCart(
+        @Header("Authorization") token: String
+    ): ListCartMerchResponse
+
+    
 
     @GET("event/cart/{idPembelianEvent}")
     suspend fun getDetailCart(

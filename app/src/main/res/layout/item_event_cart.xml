@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    android:padding="12dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Gambar di kiri -->
+        <ImageView
+            android:id="@+id/ivEventImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/nama_event"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Konten Text di kanan gambar -->
+        <TextView
+            android:id="@+id/tvNamaEvent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/nama_event"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivEventImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="12dp"/>
+
+        <TextView
+            android:id="@+id/tvJumlahTiket"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/jumlah"
+            app:layout_constraintTop_toBottomOf="@id/tvNamaEvent"
+            app:layout_constraintStart_toStartOf="@id/tvNamaEvent"
+            app:layout_constraintEnd_toEndOf="@id/tvNamaEvent"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/harga"
+            app:layout_constraintTop_toBottomOf="@id/tvJumlahTiket"
+            app:layout_constraintStart_toStartOf="@id/tvNamaEvent"
+            app:layout_constraintEnd_toEndOf="@id/tvNamaEvent"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status"
+            android:textColor="@android:color/holo_red_dark"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="4dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

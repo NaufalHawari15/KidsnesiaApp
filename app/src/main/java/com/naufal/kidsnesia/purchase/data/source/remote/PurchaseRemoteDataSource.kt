@@ -6,6 +6,7 @@ import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchReques
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -19,6 +20,14 @@ class PurchaseRemoteDataSource(private val apiService: ApiService) {
 
     suspend fun createCartMerch(token: String, request: CartMerchRequest): CartMerchResponse {
         return apiService.createMerchCart(token, request)
+    }
+
+    suspend fun getListCart(token: String): ListCartResponse {
+        return apiService.getListCart(token)
+    }
+
+    suspend fun getListMerchCart(token: String): ListCartMerchResponse {
+        return apiService.getListMerchCart(token)
     }
 //    suspend fun getListCart(): Flow<ApiResponse<ListCartResponse>> = flow {
 //        try {

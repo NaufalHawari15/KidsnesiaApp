@@ -74,5 +74,8 @@
     <string name="done_otp">DONE</string>
     <string name="detail_produk">Detail Produk</string>
     <string name="pesan_sekarang">Pesan Sekarang</string>
+    <string name="status">Status</string>
+    <string name="nama_produk">Nama Produk</string>
+    <string name="jumlah">Jumlah</string>
 
 </resources>

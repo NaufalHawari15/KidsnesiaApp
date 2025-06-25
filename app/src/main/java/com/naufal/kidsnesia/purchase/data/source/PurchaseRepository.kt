@@ -8,6 +8,7 @@ import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchReques
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartResponse
 import com.naufal.kidsnesia.purchase.domain.repository.IPurchaseRepository
 import kotlinx.coroutines.flow.Flow
@@ -24,6 +25,14 @@ class PurchaseRepository(
 
     override suspend fun createCartMerch(token: String, request: CartMerchRequest): CartMerchResponse {
         return purchaseRemoteDataSource.createCartMerch(token, request)
+    }
+
+    override suspend fun getListCart(token: String): ListCartResponse {
+        return purchaseRemoteDataSource.getListCart(token)
+    }
+
+    override suspend fun getListMerchCart(token: String): ListCartMerchResponse {
+        return purchaseRemoteDataSource.getListMerchCart(token)
     }
 
 //    override fun getListCart(): Flow<Resource<ListCartResponse>> = flow {

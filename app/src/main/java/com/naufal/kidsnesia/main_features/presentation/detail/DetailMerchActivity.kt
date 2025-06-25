@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.databinding.ActivityDetailMerchBinding
@@ -42,7 +43,7 @@ class DetailMerchActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             viewModel.loadingState.collect { isLoading ->
-                binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+                binding.loadingOverlay.visibility = if (isLoading) View.VISIBLE else View.GONE
             }
         }
 
@@ -104,26 +105,27 @@ class DetailMerchActivity : AppCompatActivity() {
                     val bottomSheet = MerchBottomSheet(
                         imageUrl = merch.fotoMerchandise,
                         maxMerch = merch.stok ?: 0
-                    ) { jumlahProduk ->
+                    ) { jumlahProduk, onDone, onError ->
                         viewModel.createCartMerch(
                             idMerch = merch.idMerchandise ?: 0,
-                            jumlahProduk = merch.stok ?: 0,
+                            jumlahProduk = jumlahProduk,
                             onSuccess = {
                                 Toast.makeText(this, "Produk berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+                                onDone()
                             },
-                            onError = {
-                                Toast.makeText(this, "Gagal: $it", Toast.LENGTH_SHORT).show()
+                            onError = { err ->
+                                onError(err)
                             }
                         )
                     }
-                    bottomSheet.show(supportFragmentManager, "TicketBottomSheet")
+                    bottomSheet.show(supportFragmentManager, "MerchBottomSheet")
                 }
             }
         }
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.loadingOverlay.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     companion object {

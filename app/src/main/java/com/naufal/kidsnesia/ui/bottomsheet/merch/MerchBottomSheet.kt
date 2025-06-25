@@ -13,8 +13,8 @@ import com.naufal.kidsnesia.databinding.BottomSheetMerchBinding
 class MerchBottomSheet(
     private val imageUrl: String?,
     private val maxMerch: Int,
-    private val onPesanClick: (Int) -> Unit
-): BottomSheetDialogFragment() {
+    private val onPesanClickWithCallback: (Int, () -> Unit, (String) -> Unit) -> Unit
+) : BottomSheetDialogFragment() {
 
     private var _binding: BottomSheetMerchBinding? = null
     private val binding get() = _binding!!
@@ -66,9 +66,23 @@ class MerchBottomSheet(
         }
 
         binding.btnPesan.setOnClickListener {
-            onPesanClick(merchCount)
-            dismiss()
+            showLoading(true)
+            onPesanClickWithCallback(
+                merchCount,
+                {
+                    showLoading(false)
+                    dismiss()
+                },
+                {
+                    showLoading(false)
+                    Toast.makeText(requireContext(), "Gagal: $it", Toast.LENGTH_SHORT).show()
+                }
+            )
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.loadingOverlayBottom.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun updatePesanButtonState() {

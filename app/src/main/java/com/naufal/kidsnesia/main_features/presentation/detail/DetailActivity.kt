@@ -112,16 +112,20 @@ class DetailActivity : AppCompatActivity() {
                     val bottomSheet = TicketBottomSheet(
                         imageUrl = event.fotoEvent,
                         maxKuota = event.kuota ?: 0
-                    ) { jumlahTiket ->
+                    ) { jumlahTiket, onDone, onError ->
                         viewModel.createCart(
                             idEvent = event.idEvent ?: 0,
                             jumlahTiket = jumlahTiket,
                             onSuccess = {
                                 Toast.makeText(this, "Tiket berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+                                onDone()
                             },
-                            onError = {
-                                Toast.makeText(this, "Gagal: $it", Toast.LENGTH_SHORT).show()
+                            onError = { err ->
+                                onError(err)
                             }
+//                            onError = {
+//                                Toast.makeText(this, "Gagal: $it", Toast.LENGTH_SHORT).show()
+//                            }
                         )
                     }
                     bottomSheet.show(supportFragmentManager, "TicketBottomSheet")

@@ -13,7 +13,7 @@ import com.naufal.kidsnesia.databinding.BottomSheetTicketEventBinding
 class TicketBottomSheet(
     private val imageUrl: String?,
     private val maxKuota: Int,
-    private val onPesanClick: (Int) -> Unit
+    private val onPesanClickWithCallback: (Int, () -> Unit, (String) -> Unit) -> Unit
 ) : BottomSheetDialogFragment() {
 
     private var _binding: BottomSheetTicketEventBinding? = null
@@ -66,9 +66,23 @@ class TicketBottomSheet(
         }
 
         binding.btnPesan.setOnClickListener {
-            onPesanClick(ticketCount)
-            dismiss()
+            showLoading(true)
+            onPesanClickWithCallback(
+                ticketCount,
+                {
+                    showLoading(false)
+                    dismiss()
+                },
+                {
+                    showLoading(false)
+                    Toast.makeText(requireContext(), "Gagal: $it", Toast.LENGTH_SHORT).show()
+                }
+            )
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.loadingOverlayBottom.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun updatePesanButtonState() {

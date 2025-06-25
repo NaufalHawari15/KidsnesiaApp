@@ -14,6 +14,7 @@ import com.naufal.kidsnesia.databinding.FragmentDashboardBinding
 import com.naufal.kidsnesia.databinding.FragmentProfileBinding
 import com.naufal.kidsnesia.main_features.presentation.detail.DetailActivity
 import com.naufal.kidsnesia.main_features.presentation.detail.DetailMerchActivity
+import com.naufal.kidsnesia.purchase.presentation.cart.CartActivity
 import com.naufal.kidsnesia.ui.welcome.WelcomeActivity
 import org.koin.android.ext.android.get
 
@@ -33,6 +34,11 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.imageCart.setOnClickListener {
+            val intent = Intent(requireContext(), CartActivity::class.java)
+            startActivity(intent)
+        }
 
         setupRecyclerView()
         observeProducts()
