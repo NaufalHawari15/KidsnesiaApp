@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.tabs.TabLayoutMediator
 import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.databinding.ActivityCartBinding
+import com.naufal.kidsnesia.purchase.presentation.cart.event.EventCartFragment
 
 class CartActivity : AppCompatActivity() {
 
@@ -30,5 +31,12 @@ class CartActivity : AppCompatActivity() {
         }.attach()
 
         supportActionBar?.hide()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Paksa refresh cart
+        val currentFragment = supportFragmentManager.findFragmentByTag("f0") as? EventCartFragment
+        currentFragment?.refreshCart()
     }
 }

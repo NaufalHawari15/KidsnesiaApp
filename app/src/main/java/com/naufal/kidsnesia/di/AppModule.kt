@@ -21,6 +21,9 @@ import com.naufal.kidsnesia.purchase.domain.repository.IPurchaseRepository
 import com.naufal.kidsnesia.purchase.domain.usecase.PurchaseInteractor
 import com.naufal.kidsnesia.purchase.domain.usecase.PurchaseUseCase
 import com.naufal.kidsnesia.purchase.presentation.cart.CartViewModel
+import com.naufal.kidsnesia.purchase.presentation.cart.event.DetailEventCartViewModel
+import com.naufal.kidsnesia.purchase.presentation.cart.merch.DetailMerchCartViewModel
+import com.naufal.kidsnesia.purchase.presentation.transaksi.event.TransaksiViewModel
 
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -46,6 +49,9 @@ val viewModelModule = module {
     viewModel { ProfileViewModel(get()) }
     viewModel { DetailMerchViewModel(get(), get(), get()) }
     viewModel { CartViewModel(get(), get()) }
+    viewModel { DetailEventCartViewModel(get(), get()) }
+    viewModel { DetailMerchCartViewModel(get(), get()) }
+    viewModel { TransaksiViewModel(get(), get()) }
 //    viewModel { CartViewModel(get(), get()) }
 //    viewModel { DetailCartViewModel(get(), get()) }
 //    viewModel { CartViewModel(get())}

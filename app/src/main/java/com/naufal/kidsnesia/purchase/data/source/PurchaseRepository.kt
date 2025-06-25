@@ -8,8 +8,15 @@ import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchReques
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.CheckoutRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.CheckoutResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartMerchResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiResponse
 import com.naufal.kidsnesia.purchase.domain.repository.IPurchaseRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -35,21 +42,24 @@ class PurchaseRepository(
         return purchaseRemoteDataSource.getListMerchCart(token)
     }
 
-//    override fun getListCart(): Flow<Resource<ListCartResponse>> = flow {
-//        emit(Resource.Loading())
-//        authLocalDataSource.getSession().collect { user->
-//            if (user.token.isNotEmpty()) {
-//                purchaseRemoteDataSource.getListCart().collect { apiResponse ->
-//                    when (apiResponse) {
-//                        is ApiResponse.Success -> emit(Resource.Success(apiResponse.data))
-//                        is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
-//                        ApiResponse.Empty -> emit(Resource.Error("Empty response from server"))
-//                    }
-//                }
-//            }
-//            else {
-//                emit(Resource.Error("User not logged in"))
-//            }
-//        }
-//    }
+    override suspend fun getDetailCart(token: String, idPembelianEvent: String): DetailCartResponse {
+        return purchaseRemoteDataSource.getDetailCart(token, idPembelianEvent)
+    }
+
+    override suspend fun getDetailCartMerch(token: String, idPembelianMerch: String): DetailCartMerchResponse {
+        return purchaseRemoteDataSource.getDetailCartMerch(token, idPembelianMerch)
+    }
+
+    override suspend fun createCheckout(token: String, idPembelianEvent: String, request: CheckoutRequest): CheckoutResponse {
+        return purchaseRemoteDataSource.createCheckout(token, idPembelianEvent, request)
+    }
+
+    override suspend fun pilihBank(token: String, request: PilihBankRequest): PilihBankResponse {
+        return purchaseRemoteDataSource.pilihBank(token, request)
+    }
+
+    suspend fun uploadBukt(token: String, request:): UploadBuktiResponse {
+        return purchaseRemoteDataSource.uploadBukti(token, request)
+    }
+
 }

@@ -77,5 +77,19 @@
     <string name="status">Status</string>
     <string name="nama_produk">Nama Produk</string>
     <string name="jumlah">Jumlah</string>
+    <string name="detail_keranjang">Detail Keranjang</string>
+    <string name="jadwal_event">Jadwal Event</string>
+    <string name="lanjutkan_pemesanan">Lanjutkan Pemesanan</string>
+    <string name="waktu_kegiatan">Waktu Kegiatan :</string>
+    <string name="harga_tiket">Harga :</string>
+    <string name="total_tiket">Jumlah Tiket :</string>
+    <string name="total_harga">Total Harga :</string>
+    <string name="lanjutkan_pembayaran">Lanjutkan Pembayaran</string>
+    <string name="informasi_transaksi_bank">Silakan masukkan nama bank tempat Anda akan melakukan transfer pembayaran pada kolom di bawah ini.</string>
+    <string name="no_rek_tujuan">Nomor Rekening Tujuan : </string>
+    <string name="nomor_rek_kidsnesia">7123456789</string>
+    <string name="atas_nama">Atas Nama :</string>
+    <string name="pemilik_rek">PT KIDSNESIA EDUPARK KREASI</string>
+    <string name="nama_bank">Nama Bank</string>
 
 </resources>

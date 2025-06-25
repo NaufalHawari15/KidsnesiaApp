@@ -1,5 +1,6 @@
 package com.naufal.kidsnesia.purchase.presentation.cart.merch
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.databinding.FragmentMerchCartBinding
 import com.naufal.kidsnesia.purchase.presentation.cart.CartViewModel
@@ -44,7 +44,11 @@ class MerchCartFragment : Fragment() {
                         val list = resource.data?.listCartMerch?.filterNotNull() ?: emptyList()
 
                         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext()) // <-- Tambahkan ini
-                        binding.recyclerView.adapter = MerchCartAdapter(list)
+                        binding.recyclerView.adapter = MerchCartAdapter(list) { idPembelianMerch ->
+                            val intent = Intent(requireContext(), DetailMerchCartActivity::class.java)
+                            intent.putExtra("idPembelianMerch", idPembelianMerch)
+                            startActivity(intent)
+                        }
                     }
                     is Resource.Error -> {
                         binding.progressBar.visibility = View.GONE

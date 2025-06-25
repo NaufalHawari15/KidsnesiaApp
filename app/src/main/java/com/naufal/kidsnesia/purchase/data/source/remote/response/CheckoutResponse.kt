@@ -2,34 +2,37 @@ package com.naufal.kidsnesia.purchase.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class DetailCartResponse(
+data class CheckoutResponse(
 
-	@field:SerializedName("cartEventDetail")
-	val cartEventDetail: CartEventDetail? = null,
+	@field:SerializedName("pembelianEventResponse")
+	val pembelianEventResponse: PembelianResponse? = null,
 
 	@field:SerializedName("error")
-	val error: Boolean? = null
+	val error: Boolean? = null,
+
+	@field:SerializedName("message")
+	val message: String? = null
 )
 
-data class CartEventDetail(
+data class PembelianResponse(
+
+	@field:SerializedName("totaHargalEvent")
+	val totaHargalEvent: Int? = null,
 
 	@field:SerializedName("tanggalPembelianEvent")
-	val tanggalPembelianEvent: Any? = null,
+	val tanggalPembelianEvent: String? = null,
 
 	@field:SerializedName("idPembelianEvent")
 	val idPembelianEvent: Int? = null,
 
 	@field:SerializedName("cartEventItem")
-	val cartEventItem: List<CartEventItem?>? = null,
-
-	@field:SerializedName("totalHargaEvent")
-	val totalHargaEvent: Int? = null,
+	val cartEventItem: List<ItemCartEvent?>? = null,
 
 	@field:SerializedName("statusPembelianEvent")
 	val statusPembelianEvent: String? = null
 )
 
-data class CartEventItem(
+data class ItemCartEvent(
 
 	@field:SerializedName("fotoEvent")
 	val fotoEvent: String? = null,

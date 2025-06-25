@@ -1,5 +1,6 @@
 package com.naufal.kidsnesia.purchase.presentation.cart.event
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -42,8 +43,12 @@ class EventCartFragment : Fragment() {
                         binding.progressBar.visibility = View.GONE
                         val list = resource.data?.listEventCart?.filterNotNull() ?: emptyList()
 
-                        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext()) // <-- Tambahkan ini
-                        binding.recyclerView.adapter = EventCartAdapter(list)
+                        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                        binding.recyclerView.adapter = EventCartAdapter(list) { idPembelianEvent ->
+                            val intent = Intent(requireContext(), DetailEventCartActivity::class.java)
+                            intent.putExtra("idPembelianEvent", idPembelianEvent)
+                            startActivity(intent)
+                        }
                     }
                     is Resource.Error -> {
                         binding.progressBar.visibility = View.GONE
@@ -52,6 +57,10 @@ class EventCartFragment : Fragment() {
                 }
             }
         }
+    }
+
+    fun refreshCart() {
+        viewModel.getListCartEvent()
     }
 
     override fun onDestroyView() {

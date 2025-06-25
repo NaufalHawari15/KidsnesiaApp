@@ -7,8 +7,10 @@ import com.bumptech.glide.Glide
 import com.naufal.kidsnesia.databinding.ItemEventCartBinding
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListEventCartItem
 
-class EventCartAdapter(private val list: List<ListEventCartItem>) :
-    RecyclerView.Adapter<EventCartAdapter.ViewHolder>() {
+class EventCartAdapter(
+    private val list: List<ListEventCartItem>,
+    private val onItemClick: (String) -> Unit
+) : RecyclerView.Adapter<EventCartAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemEventCartBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ListEventCartItem) {
@@ -22,6 +24,12 @@ class EventCartAdapter(private val list: List<ListEventCartItem>) :
             Glide.with(itemView.context)
                 .load(firstItem?.fotoEvent)
                 .into(binding.ivEventImage)
+
+            itemView.setOnClickListener {
+                item.idPembelianEvent?.let {
+                    onItemClick(it.toString())
+                }
+            }
         }
 
     }
@@ -32,7 +40,7 @@ class EventCartAdapter(private val list: List<ListEventCartItem>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        list[position]?.let { holder.bind(it) }
+        holder.bind(list[position])
     }
 
     override fun getItemCount(): Int = list.size

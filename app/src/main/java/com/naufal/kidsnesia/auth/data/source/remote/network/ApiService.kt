@@ -17,16 +17,25 @@ import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchReques
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.CheckoutRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.CheckoutResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.DeleteCartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiResponse
+import okhttp3.MultipartBody
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
 
 interface ApiService {
@@ -80,6 +89,17 @@ interface ApiService {
         @Body request: CartMerchRequest
     ): CartMerchResponse
 
+    @GET("merch/cart/listcart")
+    suspend fun getListMerchCart(
+        @Header("Authorization") token: String
+    ): ListCartMerchResponse
+
+    @GET("merch/cart/{idPembelianMerch}")
+    suspend fun getDetailCartMerch(
+        @Header("Authorization") token: String,
+        @Path("idPembelianMerch") idPembelianMerch: String
+    ): DetailCartMerchResponse
+
     @POST("event/cart")
     suspend fun createCart(
         @Header("Authorization") token: String,
@@ -91,24 +111,38 @@ interface ApiService {
         @Header("Authorization") token: String
     ): ListCartResponse
 
-    @GET("merch/cart/listcart")
-    suspend fun getListMerchCart(
-        @Header("Authorization") token: String
-    ): ListCartMerchResponse
-
-    
-
     @GET("event/cart/{idPembelianEvent}")
     suspend fun getDetailCart(
         @Header("Authorization") token: String,
         @Path("idPembelianEvent") idPembelianEvent: String
     ): DetailCartResponse
 
-    @DELETE ("event/cart/{idPembelianEvent}")
-    suspend fun deleteCart(
+    @POST("event/checkout/{idPembelianEvent}")
+    @Headers("Content-Type: application/json", "Accept: application/json")
+    suspend fun createCheckout(
         @Header("Authorization") token: String,
-        @Path("idPembelianEvent") idPembelianEvent: Int
-    ): DeleteCartResponse
+        @Path("idPembelianEvent") idPembelianEvent: String,
+        @Body request: CheckoutRequest
+    ): CheckoutResponse
+
+    @POST("event/pembayaran/pilih-bank")
+    suspend fun pilihBank(
+        @Header("Authorization") token: String,
+        @Body request: PilihBankRequest
+    ): PilihBankResponse
+
+    @Multipart
+    @POST("event/pembayaran/{idPembayaranEvent}/upload-bukti")
+    suspend fun uploadBukti(
+        @Header("Authorization") token: String,
+        @Part file: MultipartBody.Part
+    ): UploadBuktiResponse
+
+//    @DELETE ("event/cart/{idPembelianEvent}")
+//    suspend fun deleteCart(
+//        @Header("Authorization") token: String,
+//        @Path("idPembelianEvent") idPembelianEvent: Int
+//    ): DeleteCartResponse
 
 //    @POST("pembelian")
 //    suspend fun uploadBeli(

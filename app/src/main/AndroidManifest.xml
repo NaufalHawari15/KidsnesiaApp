@@ -18,6 +18,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".purchase.presentation.cart.merch.DetailMerchCartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".purchase.presentation.transaksi.event.TransaksiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".purchase.presentation.cart.event.DetailEventCartActivity"
+            android:exported="false" />
+        <activity
             android:name=".purchase.presentation.cart.CartActivity"
             android:exported="false" />
         <activity

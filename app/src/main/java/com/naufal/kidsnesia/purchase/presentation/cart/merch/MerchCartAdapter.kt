@@ -7,8 +7,10 @@ import com.bumptech.glide.Glide
 import com.naufal.kidsnesia.databinding.ItemMerchCartBinding
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartMerchItem
 
-class MerchCartAdapter(private val list: List<ListCartMerchItem>) :
-    RecyclerView.Adapter<MerchCartAdapter.ViewHolder>() {
+class MerchCartAdapter(
+    private val list: List<ListCartMerchItem>,
+    private val onItemClick: (String) -> Unit
+) : RecyclerView.Adapter<MerchCartAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemMerchCartBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ListCartMerchItem) {
@@ -22,6 +24,12 @@ class MerchCartAdapter(private val list: List<ListCartMerchItem>) :
             Glide.with(itemView.context)
                 .load(firstItem?.fotoMerchandise)
                 .into(binding.ivMerchImage)
+
+            itemView.setOnClickListener {
+                item.idPembelianMerch?.let {
+                    onItemClick(it.toString())
+                }
+            }
         }
     }
 
@@ -31,7 +39,7 @@ class MerchCartAdapter(private val list: List<ListCartMerchItem>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        list[position]?.let { holder.bind(it) }
+        holder.bind(list[position])
     }
 
     override fun getItemCount(): Int = list.size
