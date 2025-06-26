@@ -1,5 +1,8 @@
 package com.naufal.kidsnesia.purchase.presentation.transaksi.event
 
+import android.content.Context
+import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +11,9 @@ import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.auth.data.source.local.AuthLocalDataSource
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankRequest
 import com.naufal.kidsnesia.purchase.domain.usecase.PurchaseUseCase
+import com.naufal.kidsnesia.util.FileUtil
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -19,28 +25,49 @@ class TransaksiViewModel(
     private val authLocalDataSource: AuthLocalDataSource
 ) : ViewModel() {
 
-    private val _result = MutableLiveData<Resource<Unit>>()
-    val result: LiveData<Resource<Unit>> = _result
+    private val _loadingState = MutableLiveData<Boolean>()
+    val loadingState: LiveData<Boolean> = _loadingState
 
-    fun konfirmasiPembayaran(idPembayaranEvent: String, namaBank: String, imageFile: File) {
+    private val _success = MutableLiveData<Boolean>()
+    val success: LiveData<Boolean> = _success
+
+    fun konfirmasiPembayaran(
+        idPembayaranEvent: String,
+        namaBank: String,
+        buktiUri: Uri,
+        context: Context
+    ) {
         viewModelScope.launch {
+            _loadingState.value = true
             try {
-                _result.value = Resource.Loading()
                 val token = authLocalDataSource.getToken()
 
-                // 1. Pilih Bank
-                val pilihBankRequest = PilihBankRequest(namaBank = namaBank, idPembayaranEvent = idPembayaranEvent.toInt())
-                purchaseUseCase.pilihBank("Bearer $token", pilihBankRequest)
+                // 🔁 Gunakan idPembelianEvent untuk pilihBank
+                val pilihBankRequest = PilihBankRequest(bankPengirim = namaBank)
+                val pilihBankResponse = purchaseUseCase.pilihBank(
+                    "Bearer $token", idPembayaranEvent, pilihBankRequest
+                )
 
-                // 2. Upload Bukti
-                val requestFile = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
-                val body = MultipartBody.Part.createFormData("file", imageFile.name, requestFile)
-                purchaseUseCase.uploadBukti("Bearer $token", body)
+                val idPembayaran = pilihBankResponse.dataPembayaranEvent?.idPembayaranEvent.toString()
+                if (idPembayaran.isEmpty()) throw Exception("ID Pembayaran tidak ditemukan")
 
-                _result.value = Resource.Success(Unit)
+                // Upload bukti transfer
+                val file = FileUtil.from(context, buktiUri)
+                val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+                val part = MultipartBody.Part.createFormData("buktiBayarEvent", file.name, requestFile)
+
+                purchaseUseCase.uploadBukti("Bearer $token", idPembayaran, part)
+
+
+                _success.value = true
             } catch (e: Exception) {
-                _result.value = Resource.Error(e.message ?: "Terjadi kesalahan saat konfirmasi")
+                e.printStackTrace()
+                _success.value = false
+            } finally {
+                _loadingState.value = false
             }
         }
     }
 }
+
+

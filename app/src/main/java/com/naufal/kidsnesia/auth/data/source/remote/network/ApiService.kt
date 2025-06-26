@@ -125,9 +125,10 @@ interface ApiService {
         @Body request: CheckoutRequest
     ): CheckoutResponse
 
-    @POST("event/pembayaran/pilih-bank")
+    @POST("event/pembayaran/pilih-bank/{idPembelianEvent}")
     suspend fun pilihBank(
         @Header("Authorization") token: String,
+        @Path("idPembelianEvent") idPembelianEvent: String,
         @Body request: PilihBankRequest
     ): PilihBankResponse
 
@@ -135,6 +136,7 @@ interface ApiService {
     @POST("event/pembayaran/{idPembayaranEvent}/upload-bukti")
     suspend fun uploadBukti(
         @Header("Authorization") token: String,
+        @Path("idPembayaranEvent") id: String,
         @Part file: MultipartBody.Part
     ): UploadBuktiResponse
 

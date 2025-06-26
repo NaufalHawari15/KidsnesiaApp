@@ -91,4 +91,6 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
 
     implementation (libs.androidx.cardview)
+
+    implementation (libs.androidx.activity.ktx)
 }

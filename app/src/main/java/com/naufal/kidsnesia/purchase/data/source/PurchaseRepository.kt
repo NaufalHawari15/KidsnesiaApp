@@ -20,6 +20,7 @@ import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiResp
 import com.naufal.kidsnesia.purchase.domain.repository.IPurchaseRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import okhttp3.MultipartBody
 
 class PurchaseRepository(
     private val purchaseRemoteDataSource: PurchaseRemoteDataSource,
@@ -54,12 +55,11 @@ class PurchaseRepository(
         return purchaseRemoteDataSource.createCheckout(token, idPembelianEvent, request)
     }
 
-    override suspend fun pilihBank(token: String, request: PilihBankRequest): PilihBankResponse {
-        return purchaseRemoteDataSource.pilihBank(token, request)
+    override suspend fun pilihBank(token: String, idPembelianEvent: String, request: PilihBankRequest): PilihBankResponse {
+        return purchaseRemoteDataSource.pilihBank(token, idPembelianEvent, request)
     }
 
-    suspend fun uploadBukt(token: String, request:): UploadBuktiResponse {
-        return purchaseRemoteDataSource.uploadBukti(token, request)
+    override suspend fun uploadBukti(token: String, idPembayaranEvent: String, file: MultipartBody.Part): UploadBuktiResponse {
+        return purchaseRemoteDataSource.uploadBukti(token, idPembayaranEvent, file)
     }
-
 }

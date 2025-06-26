@@ -19,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
 class PurchaseRemoteDataSource(private val apiService: ApiService) {
@@ -50,11 +51,11 @@ class PurchaseRemoteDataSource(private val apiService: ApiService) {
         return apiService.createCheckout(token, idPembelianEvent, request)
     }
 
-    suspend fun pilihBank(token: String, request: PilihBankRequest): PilihBankResponse {
-        return apiService.pilihBank(token, request)
+    suspend fun pilihBank(token: String, idPembelianEvent: String, request: PilihBankRequest): PilihBankResponse {
+        return apiService.pilihBank(token, idPembelianEvent, request)
     }
 
-    suspend fun uploadBukti(token: String, request: RequestBody): UploadBuktiResponse {
-        return apiService.uploadBukti(token, request)
+    suspend fun uploadBukti(token: String, idPembayaranEvent: String, file: MultipartBody.Part): UploadBuktiResponse {
+        return apiService.uploadBukti(token, idPembayaranEvent, file)
     }
 }

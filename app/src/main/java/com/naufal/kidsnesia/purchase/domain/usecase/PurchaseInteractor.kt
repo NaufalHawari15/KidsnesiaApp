@@ -16,6 +16,7 @@ import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankRespon
 import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiResponse
 import com.naufal.kidsnesia.purchase.domain.repository.IPurchaseRepository
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MultipartBody
 
 class PurchaseInteractor(private val purchaseRepository: IPurchaseRepository) : PurchaseUseCase {
     override suspend fun createCart(token: String, request: CartRequest): CartResponse {
@@ -46,11 +47,11 @@ class PurchaseInteractor(private val purchaseRepository: IPurchaseRepository) : 
         return purchaseRepository.createCheckout(token, idPembelianEvent, request)
     }
 
-    override suspend fun pilihBank(token: String, request: PilihBankRequest): PilihBankResponse {
-        return purchaseRepository.pilihBank(token, request)
+    override suspend fun pilihBank(token: String, idPembelianEvent: String, request: PilihBankRequest): PilihBankResponse {
+        return purchaseRepository.pilihBank(token, idPembelianEvent, request)
     }
 
-    override suspend fun uploadBukti(token: String, request:): UploadBuktiResponse {
-        return purchaseRepository.uploadBukti(token, request)
+    override suspend fun uploadBukti(token: String, idPembayaranEvent: String, file: MultipartBody.Part): UploadBuktiResponse {
+        return purchaseRepository.uploadBukti(token, idPembayaranEvent, file)
     }
 }
