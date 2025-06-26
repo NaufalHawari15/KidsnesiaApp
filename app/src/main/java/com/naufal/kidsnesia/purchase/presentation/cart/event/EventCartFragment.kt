@@ -30,6 +30,11 @@ class EventCartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getListCartEvent()
+        }
+
         viewModel.getListCartEvent()
         observeEventCart()
     }
@@ -37,12 +42,12 @@ class EventCartFragment : Fragment() {
     private fun observeEventCart() {
         lifecycleScope.launch {
             viewModel.cartEvent.collect { resource ->
+                binding.swipeRefreshLayout.isRefreshing = false
                 when (resource) {
                     is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
                     is Resource.Success -> {
                         binding.progressBar.visibility = View.GONE
                         val list = resource.data?.listEventCart?.filterNotNull() ?: emptyList()
-
                         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
                         binding.recyclerView.adapter = EventCartAdapter(list) { idPembelianEvent ->
                             val intent = Intent(requireContext(), DetailEventCartActivity::class.java)

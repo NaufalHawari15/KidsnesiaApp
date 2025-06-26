@@ -13,13 +13,14 @@ import com.naufal.kidsnesia.purchase.presentation.cart.event.EventCartFragment
 class CartActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCartBinding
+    private lateinit var pagerAdapter: CartPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val pagerAdapter = CartPagerAdapter(this)
+        pagerAdapter = CartPagerAdapter(this)
         binding.viewPager.adapter = pagerAdapter
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
@@ -35,8 +36,9 @@ class CartActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Paksa refresh cart
-        val currentFragment = supportFragmentManager.findFragmentByTag("f0") as? EventCartFragment
-        currentFragment?.refreshCart()
+        when (binding.viewPager.currentItem) {
+            0 -> pagerAdapter.eventFragment.refreshCart()
+            1 -> pagerAdapter.merchFragment.refreshCart()
+        }
     }
 }

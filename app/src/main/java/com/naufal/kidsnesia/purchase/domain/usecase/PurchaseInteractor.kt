@@ -5,14 +5,19 @@ import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchReques
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.CheckoutMerchRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.CheckoutMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CheckoutRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CheckoutResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMerchRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiResponse
 import com.naufal.kidsnesia.purchase.domain.repository.IPurchaseRepository
 import kotlinx.coroutines.flow.Flow
@@ -47,11 +52,23 @@ class PurchaseInteractor(private val purchaseRepository: IPurchaseRepository) : 
         return purchaseRepository.createCheckout(token, idPembelianEvent, request)
     }
 
+    override suspend fun createCheckoutMerch(token: String, idPembelianMerch: String, request: CheckoutMerchRequest): CheckoutMerchResponse {
+        return purchaseRepository.createCheckoutMerch(token, idPembelianMerch, request)
+    }
+
     override suspend fun pilihBank(token: String, idPembelianEvent: String, request: PilihBankRequest): PilihBankResponse {
         return purchaseRepository.pilihBank(token, idPembelianEvent, request)
     }
 
     override suspend fun uploadBukti(token: String, idPembayaranEvent: String, file: MultipartBody.Part): UploadBuktiResponse {
         return purchaseRepository.uploadBukti(token, idPembayaranEvent, file)
+    }
+
+    override suspend fun pilihBankMerch(token: String, idPembayaranMerch: String, request: PilihBankMerchRequest): PilihBankMerchResponse {
+        return purchaseRepository.pilihBankMerch(token, idPembayaranMerch, request)
+    }
+
+    override suspend fun uploadBuktiMerch(token: String, idPembayaranMerch: String, file: MultipartBody.Part): UploadBuktiMerchResponse {
+        return purchaseRepository.uploadBuktiMerch(token, idPembayaranMerch, file)
     }
 }

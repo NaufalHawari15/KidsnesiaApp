@@ -1,26 +1,21 @@
-package com.naufal.kidsnesia.purchase.presentation.transaksi.event
+package com.naufal.kidsnesia.purchase.presentation.transaksi.merch
 
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.auth.data.source.local.AuthLocalDataSource
-import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMerchRequest
 import com.naufal.kidsnesia.purchase.domain.usecase.PurchaseUseCase
 import com.naufal.kidsnesia.util.FileUtil
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import java.io.File
 
-class TransaksiViewModel(
+class TransaksiMerchViewModel(
     private val purchaseUseCase: PurchaseUseCase,
     private val authLocalDataSource: AuthLocalDataSource
 ) : ViewModel() {
@@ -32,7 +27,7 @@ class TransaksiViewModel(
     val success: LiveData<Boolean> = _success
 
     fun konfirmasiPembayaran(
-        idPembayaranEvent: String,
+        idPembayaranMerch: String,
         namaBank: String,
         buktiUri: Uri,
         context: Context
@@ -42,21 +37,19 @@ class TransaksiViewModel(
             try {
                 val token = authLocalDataSource.getToken()
 
-                // 🔁 Gunakan idPembelianEvent untuk pilihBank
-                val pilihBankRequest = PilihBankRequest(bankPengirim = namaBank)
-                val pilihBankResponse = purchaseUseCase.pilihBank(
-                    "Bearer $token", idPembayaranEvent, pilihBankRequest
+                val pilihBankMerchRequest = PilihBankMerchRequest(bankPengirim = namaBank)
+                val pilihBankMerchResponse = purchaseUseCase.pilihBankMerch(
+                    "Bearer $token", idPembayaranMerch, pilihBankMerchRequest
                 )
 
-                val idPembayaran = pilihBankResponse.dataPembayaranEvent?.idPembayaranEvent.toString()
-                if (idPembayaran.isEmpty()) throw Exception("ID Pembayaran tidak ditemukan")
+                val idPembayaranMerch = pilihBankMerchResponse.dataPembayaranMerch?.idPembayaranMerch.toString()
+                if (idPembayaranMerch.isEmpty()) throw Exception("ID Pembayaran tidak ditemukan")
 
-                // Upload bukti transfer
                 val file = FileUtil.from(context, buktiUri)
                 val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
-                val part = MultipartBody.Part.createFormData("buktiBayarEvent", file.name, requestFile)
+                val part = MultipartBody.Part.createFormData("buktiBayarMerch", file.name, requestFile)
 
-                purchaseUseCase.uploadBukti("Bearer $token", idPembayaran, part)
+                purchaseUseCase.uploadBuktiMerch("Bearer $token", idPembayaranMerch, part)
 
                 _success.value = true
             } catch (e: Exception) {
@@ -68,5 +61,3 @@ class TransaksiViewModel(
         }
     }
 }
-
-

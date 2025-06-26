@@ -8,12 +8,16 @@ import com.naufal.kidsnesia.purchase.presentation.cart.event.EventCartFragment
 import com.naufal.kidsnesia.purchase.presentation.cart.merch.MerchCartFragment
 
 class CartPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
+
+    val eventFragment = EventCartFragment()
+    val merchFragment = MerchCartFragment()
+
     override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> EventCartFragment()
-            1 -> MerchCartFragment()
+            0 -> eventFragment
+            1 -> merchFragment
             else -> Fragment()
         }
     }

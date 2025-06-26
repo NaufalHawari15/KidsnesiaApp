@@ -24,6 +24,7 @@ import com.naufal.kidsnesia.purchase.presentation.cart.CartViewModel
 import com.naufal.kidsnesia.purchase.presentation.cart.event.DetailEventCartViewModel
 import com.naufal.kidsnesia.purchase.presentation.cart.merch.DetailMerchCartViewModel
 import com.naufal.kidsnesia.purchase.presentation.transaksi.event.TransaksiViewModel
+import com.naufal.kidsnesia.purchase.presentation.transaksi.merch.TransaksiMerchViewModel
 
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -48,16 +49,14 @@ val viewModelModule = module {
     viewModel { DetailViewModel(get(), get(), get()) }
     viewModel { ProfileViewModel(get()) }
     viewModel { DetailMerchViewModel(get(), get(), get()) }
+
     viewModel { CartViewModel(get(), get()) }
     viewModel { DetailEventCartViewModel(get(), get()) }
     viewModel { DetailMerchCartViewModel(get(), get()) }
     viewModel { TransaksiViewModel(get(), get()) }
-//    viewModel { CartViewModel(get(), get()) }
-//    viewModel { DetailCartViewModel(get(), get()) }
-//    viewModel { CartViewModel(get())}
+    viewModel { TransaksiMerchViewModel(get(), get()) }
 //    viewModel { PembelianViewModel(get(), get()) }
 //    viewModel { DetailPembayaranViewModel(get()) }
-//    viewModel { TranskasiViewModel(get()) }
 //    viewModel { NotaViewModel(get()) }
 //    viewModel { HistoryViewModel(get()) }
 

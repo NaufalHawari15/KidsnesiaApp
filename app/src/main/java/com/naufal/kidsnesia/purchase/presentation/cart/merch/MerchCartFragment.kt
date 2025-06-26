@@ -30,6 +30,11 @@ class MerchCartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getListCartMerch()
+        }
+
         viewModel.getListCartMerch()
         observeMerchCart()
     }
@@ -37,13 +42,13 @@ class MerchCartFragment : Fragment() {
     private fun observeMerchCart() {
         lifecycleScope.launch {
             viewModel.cartMerch.collect { resource ->
+                binding.swipeRefreshLayout.isRefreshing = false
                 when (resource) {
                     is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
                     is Resource.Success -> {
                         binding.progressBar.visibility = View.GONE
                         val list = resource.data?.listCartMerch?.filterNotNull() ?: emptyList()
-
-                        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext()) // <-- Tambahkan ini
+                        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
                         binding.recyclerView.adapter = MerchCartAdapter(list) { idPembelianMerch ->
                             val intent = Intent(requireContext(), DetailMerchCartActivity::class.java)
                             intent.putExtra("idPembelianMerch", idPembelianMerch)
@@ -57,6 +62,10 @@ class MerchCartFragment : Fragment() {
                 }
             }
         }
+    }
+
+    fun refreshCart() {
+        viewModel.getListCartEvent()
     }
 
 

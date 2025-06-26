@@ -91,5 +91,7 @@
     <string name="atas_nama">Atas Nama :</string>
     <string name="pemilik_rek">PT KIDSNESIA EDUPARK KREASI</string>
     <string name="nama_bank">Nama Bank</string>
+    <string name="pilih_bank">Pilih Nama Bank</string>
+    <string name="upload_transfer">Upload Bukti Transfer</string>
 
 </resources>
