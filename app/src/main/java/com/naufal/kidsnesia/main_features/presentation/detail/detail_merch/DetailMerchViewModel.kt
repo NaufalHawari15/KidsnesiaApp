@@ -1,4 +1,4 @@
-package com.naufal.kidsnesia.main_features.presentation.detail
+package com.naufal.kidsnesia.main_features.presentation.detail.detail_merch
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -8,14 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.databinding.FragmentDashboardBinding
-import com.naufal.kidsnesia.databinding.FragmentProfileBinding
-import com.naufal.kidsnesia.main_features.presentation.detail.DetailActivity
-import com.naufal.kidsnesia.main_features.presentation.detail.DetailMerchActivity
+import com.naufal.kidsnesia.main_features.presentation.detail.detail_merch.DetailMerchActivity
 import com.naufal.kidsnesia.purchase.presentation.cart.CartActivity
-import com.naufal.kidsnesia.ui.welcome.WelcomeActivity
 import org.koin.android.ext.android.get
 
 class DashboardFragment : Fragment() {

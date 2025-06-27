@@ -6,16 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.databinding.FragmentEventBinding
-import com.naufal.kidsnesia.main_features.presentation.detail.DetailActivity
-import kotlinx.coroutines.flow.collectLatest
+import com.naufal.kidsnesia.main_features.presentation.detail.detail_event.DetailActivity
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 

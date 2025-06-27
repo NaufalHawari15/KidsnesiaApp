@@ -1,28 +1,19 @@
-package com.naufal.kidsnesia.main_features.presentation.detail
+package com.naufal.kidsnesia.main_features.presentation.detail.detail_event
 
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.auth.data.Resource
-import com.naufal.kidsnesia.auth.data.source.local.UserPreference
 import com.naufal.kidsnesia.databinding.ActivityDetailBinding
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEvent
-import com.naufal.kidsnesia.purchase.data.source.remote.response.CartRequest
-import com.naufal.kidsnesia.purchase.data.source.remote.response.ItemsEventItem
 import com.naufal.kidsnesia.ui.bottomsheet.event.TicketBottomSheet
-import kotlinx.coroutines.flow.first
 
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get

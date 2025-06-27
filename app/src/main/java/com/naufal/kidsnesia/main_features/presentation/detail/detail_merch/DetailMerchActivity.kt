@@ -1,4 +1,4 @@
-package com.naufal.kidsnesia.main_features.presentation.detail
+package com.naufal.kidsnesia.main_features.presentation.detail.detail_merch
 
 import android.os.Build
 import android.os.Bundle
@@ -6,19 +6,13 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.databinding.ActivityDetailMerchBinding
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailMerchandise
 import com.naufal.kidsnesia.ui.bottomsheet.merch.MerchBottomSheet
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 

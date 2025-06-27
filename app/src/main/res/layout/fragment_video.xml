@@ -1,49 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rootLayout"
+    android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main_features.presentation.video.VideoFragment">
+    android:paddingBottom="?attr/actionBarSize"
+    android:clipToPadding="false"
+    android:fillViewport="true">
 
-    <!-- Layout konten utama video -->
-    <LinearLayout
-        android:id="@+id/contentLayout"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvVideos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Konten Video Hanya untuk Member"
-            android:textSize="20sp"/>
-    </LinearLayout>
-
-    <!-- Layout tampilan jika belum jadi member -->
-    <LinearLayout
-        android:id="@+id/lockedLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="32dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sepertinya kamu belum ikut membership nih?\nAyo daftar Membership untuk bisa mengakses halaman ini"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:paddingBottom="24dp" />
-
-        <Button
-            android:id="@+id/btnDaftarMembership"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Daftar Sekarang" />
-    </LinearLayout>
-
-</FrameLayout>
+        android:padding="15dp"
+        tools:listitem="@layout/item_video"/>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

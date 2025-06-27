@@ -5,7 +5,9 @@ import com.naufal.kidsnesia.auth.data.source.remote.network.ApiResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.EventRemoteDataSource
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEventResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailProductResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailVideoResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.EventResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.ListVideoResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.ProductResponse
 import com.naufal.kidsnesia.main_features.domain.repository.IEventRepository
 import kotlinx.coroutines.flow.Flow
@@ -56,5 +58,13 @@ class EventRepository(
                 ApiResponse.Empty -> emit(Resource.Error("Empty Response"))
             }
         }
+    }
+
+    override suspend fun getListVideo(token: String): ListVideoResponse {
+        return eventRemoteDataSource.getListVideo(token)
+    }
+
+    override suspend fun getDetailVideo(token: String, idEvent: String): DetailVideoResponse {
+        return eventRemoteDataSource.getDetailVideo(token, idEvent)
     }
 }

@@ -9,7 +9,9 @@ import com.naufal.kidsnesia.auth.data.source.remote.response.RegisterResponse
 import com.naufal.kidsnesia.auth.data.source.remote.response.ResendOtpResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEventResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailProductResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailVideoResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.EventResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.ListVideoResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.NotaResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.PelangganResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.ProductResponse
@@ -167,6 +169,20 @@ interface ApiService {
         @Path("idPembayaranMerch") id: String,
         @Part file: MultipartBody.Part
     ): UploadBuktiMerchResponse
+
+
+
+    @GET("videos")
+    suspend fun getListVideo(
+        @Header("Authorization") token: String
+    ): ListVideoResponse
+
+    @GET("videos/{idVideo}")
+    suspend fun getDetailVideo(
+        @Header("Authorization") token: String,
+        @Path("idVideo") idVideo: String
+    ): DetailVideoResponse
+
 
 //    @DELETE ("event/cart/{idPembelianEvent}")
 //    suspend fun deleteCart(

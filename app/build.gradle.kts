@@ -93,4 +93,11 @@ dependencies {
     implementation (libs.androidx.cardview)
 
     implementation (libs.androidx.activity.ktx)
+
+    implementation (libs.glide)
+    ksp (libs.ksp)
+
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.media3.ui)
+    implementation(libs.media3.session)
 }

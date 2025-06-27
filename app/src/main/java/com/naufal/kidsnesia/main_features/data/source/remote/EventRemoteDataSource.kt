@@ -5,7 +5,9 @@ import com.naufal.kidsnesia.auth.data.source.remote.network.ApiResponse
 import com.naufal.kidsnesia.auth.data.source.remote.network.ApiService
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEventResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailProductResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailVideoResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.EventResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.ListVideoResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.ProductResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -14,7 +16,7 @@ import kotlinx.coroutines.flow.flowOn
 
 class EventRemoteDataSource(private val apiService: ApiService) {
 
-    suspend fun getEvent(): Flow<ApiResponse<EventResponse>> {
+    fun getEvent(): Flow<ApiResponse<EventResponse>> {
         return flow {
             try {
                 val response = apiService.getEvent()
@@ -26,7 +28,7 @@ class EventRemoteDataSource(private val apiService: ApiService) {
         }.flowOn(Dispatchers.IO)
     }
 
-    suspend fun getDetail(idEvent: String): Flow<ApiResponse<DetailEventResponse>> {
+    fun getDetail(idEvent: String): Flow<ApiResponse<DetailEventResponse>> {
         return flow {
             try {
                 val response = apiService.getDetail(idEvent)
@@ -39,7 +41,7 @@ class EventRemoteDataSource(private val apiService: ApiService) {
 
     }
 
-    suspend fun getProduct(): Flow<ApiResponse<ProductResponse>> {
+    fun getProduct(): Flow<ApiResponse<ProductResponse>> {
         return flow {
             try {
                 val response = apiService.getProduct()
@@ -51,7 +53,7 @@ class EventRemoteDataSource(private val apiService: ApiService) {
         }.flowOn(Dispatchers.IO)
     }
 
-    suspend fun getDetailProduct(idMerch: String): Flow<ApiResponse<DetailProductResponse>> {
+    fun getDetailProduct(idMerch: String): Flow<ApiResponse<DetailProductResponse>> {
         return flow {
             try {
                 val response = apiService.getDetailProduct(idMerch)
@@ -62,5 +64,13 @@ class EventRemoteDataSource(private val apiService: ApiService) {
                 Log.e("RemoteDataSource", e.toString())
             }
         }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getListVideo(token: String): ListVideoResponse {
+        return apiService.getListVideo(token)
+    }
+
+    suspend fun getDetailVideo(token: String, idVideo: String): DetailVideoResponse {
+        return apiService.getDetailVideo(token, idVideo)
     }
 }
