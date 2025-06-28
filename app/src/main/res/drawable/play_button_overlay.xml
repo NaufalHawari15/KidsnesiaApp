@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Semi-transparent background -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#40000000"/>
+        </shape>
+    </item>
+
+    <!-- Play button icon -->
+    <item android:gravity="center">
+        <shape android:shape="oval">
+            <solid android:color="#80FFFFFF"/>
+            <size android:width="60dp" android:height="60dp"/>
+        </shape>
+    </item>
+
+    <!-- Play triangle -->
+    <item android:gravity="center">
+        <vector android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+            <path android:fillColor="#FF000000" android:pathData="M8,5v14l11,-7z"/>
+        </vector>
+    </item>
+</layer-list>

@@ -100,4 +100,12 @@ dependencies {
     implementation(libs.androidx.media3.exoplayer)
     implementation(libs.media3.ui)
     implementation(libs.media3.session)
+
+    implementation (libs.exoplayer)
+    
+
+    // Optional: untuk fitur tambahan
+    implementation (libs.google.exoplayer.ui)
+    implementation (libs.google.exoplayer.hls)
+    implementation (libs.google.exoplayer.dash)
 }
