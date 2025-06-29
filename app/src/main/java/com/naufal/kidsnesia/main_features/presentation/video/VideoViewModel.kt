@@ -8,6 +8,7 @@ import com.naufal.kidsnesia.main_features.data.source.remote.response.DataItem
 import com.naufal.kidsnesia.main_features.domain.usecase.EventUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class VideoViewModel(
@@ -28,6 +29,30 @@ class VideoViewModel(
                 _videoState.value = Resource.Success(data)
             } catch (e: Exception) {
                 _videoState.value = Resource.Error(e.message ?: "Terjadi kesalahan")
+            }
+        }
+    }
+
+    private val _membershipStatus = MutableStateFlow<Boolean?>(null)
+    val membershipStatus: StateFlow<Boolean?> = _membershipStatus
+
+    fun checkMembershipStatus() {
+        viewModelScope.launch {
+            try {
+                val isCached = authLocalDataSource.getMembershipStatus().first()
+                if (isCached) {
+                    _membershipStatus.value = true
+                    return@launch
+                }
+
+                val token = authLocalDataSource.getToken()
+                val response = eventUseCase.getMembership("Bearer $token")
+                val isActive = response.data?.statusMembership == "Aktif"
+
+                _membershipStatus.value = isActive
+                authLocalDataSource.saveMembershipStatus(isActive)
+            } catch (e: Exception) {
+                _membershipStatus.value = false
             }
         }
     }

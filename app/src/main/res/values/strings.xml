@@ -93,5 +93,10 @@
     <string name="nama_bank">Nama Bank</string>
     <string name="pilih_bank">Pilih Nama Bank</string>
     <string name="upload_transfer">Upload Bukti Transfer</string>
+    <string name="daftar_membership">Daftar Sekarang</string>
+    <string name="ajakan_membership">Sepertinya kamu belum ikut membership nih?\nAyo daftar Membership untuk bisa mengakses fitur ini</string>
+    <string name="promosi_membership">Yuk, jadi bagian dari keluarga Kidsnesia! ✨\n\nDengan hanya membayar Rp 50000, kamu bisa menikmati semua video menarik selama 1 bulan penuh! Jangan sampai ketinggalan konten eksklusif kami!</string>
+    <string name="ayo_bergabung">Ayo Bergabung</string>
+    <string name="informasi_kirim_bukti_tf">Silahkan kirimkan bukti transfer dengan menekan tombol di bawah ini. Pastikan foto/screenshot bukti transfer memiliki format .jpg/.jpeg/.png</string>
 
 </resources>

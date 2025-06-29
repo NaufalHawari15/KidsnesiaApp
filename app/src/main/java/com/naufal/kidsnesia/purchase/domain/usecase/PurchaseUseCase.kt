@@ -12,10 +12,13 @@ import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartMerch
 import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMembershipRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMembershipResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMerchRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiMembershipResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiResponse
 import kotlinx.coroutines.flow.Flow
@@ -45,4 +48,8 @@ interface PurchaseUseCase {
     suspend fun pilihBankMerch(token: String, idPembayaranMerch: String, request: PilihBankMerchRequest): PilihBankMerchResponse
 
     suspend fun uploadBuktiMerch(token: String, idPembayaranMerch: String, file: MultipartBody.Part): UploadBuktiMerchResponse
+
+    suspend fun pilihBankMembership(token: String, request: PilihBankMembershipRequest): PilihBankMembershipResponse
+
+    suspend fun uploadBuktiMembership(token: String, idPembayaranMembership: String, file: MultipartBody.Part): UploadBuktiMembershipResponse
 }

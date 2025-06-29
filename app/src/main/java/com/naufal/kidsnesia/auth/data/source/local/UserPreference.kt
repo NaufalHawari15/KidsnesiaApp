@@ -23,6 +23,8 @@ class UserPreference(private val dataStore: DataStore<Preferences>) {
     private val EMAIL_KEY = stringPreferencesKey("email")
     private val TOKEN_KEY = stringPreferencesKey("token")
     private val IS_LOGIN_KEY = booleanPreferencesKey("is_login")
+    private val MEMBERSHIP_STATUS_KEY = booleanPreferencesKey("is_member")
+
 
     suspend fun saveSession(user: UserModel) {
         dataStore.edit { preferences ->
@@ -40,6 +42,18 @@ class UserPreference(private val dataStore: DataStore<Preferences>) {
                 token = preferences[TOKEN_KEY] ?: "",
                 isLogin = preferences[IS_LOGIN_KEY] ?: false
             )
+        }
+    }
+
+    suspend fun saveMembershipStatus(isMember: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[MEMBERSHIP_STATUS_KEY] = isMember
+        }
+    }
+
+    fun getMembershipStatus(): Flow<Boolean> {
+        return dataStore.data.map { preferences ->
+            preferences[MEMBERSHIP_STATUS_KEY] ?: false
         }
     }
 

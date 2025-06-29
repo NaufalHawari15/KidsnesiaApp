@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:padding="24dp">
+
+    <!-- Tombol close -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end">
+
+        <ImageButton
+            android:id="@+id/btnClose"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="end"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_close"
+            android:contentDescription="Tutup"
+            app:tint="@android:color/black" />
+    </FrameLayout>
+
+    <!-- Pesan promosi -->
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/promosi_membership"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:paddingVertical="24dp"
+        android:textColor="#000000" />
+
+    <!-- Tombol Join -->
+    <Button
+        android:id="@+id/btnJoinNow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ayo_bergabung"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/sky_blue"
+        android:layout_gravity="center_horizontal"
+        android:paddingHorizontal="24dp" />
+</LinearLayout>

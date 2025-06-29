@@ -13,6 +13,7 @@ import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.databinding.FragmentVideoBinding
 import com.naufal.kidsnesia.main_features.presentation.detail.detail_video.DetailVideoActivity
+import com.naufal.kidsnesia.ui.bottomsheet.membership.MembershipBottomSheet
 import org.koin.android.ext.android.get
 
 class VideoFragment : Fragment() {
@@ -32,6 +33,13 @@ class VideoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Panggil pengecekan status membership di sini
+        viewModel.checkMembershipStatus()
+
+        binding.btnDaftarMembership.setOnClickListener {
+            MembershipBottomSheet().show(childFragmentManager, "JoinMembership")
+        }
+
         val adapter = VideoAdapter(emptyList()) { idVideo ->
             val intent = Intent(requireContext(), DetailVideoActivity::class.java)
             intent.putExtra("idVideo", idVideo)
@@ -41,10 +49,23 @@ class VideoFragment : Fragment() {
         binding.rvVideos.layoutManager = LinearLayoutManager(requireContext())
         binding.rvVideos.adapter = adapter
 
-        viewModel.fetchVideoList()
-
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.fetchVideoList()
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.membershipStatus.collect { isActive ->
+                isActive?.let {
+                    if (it) {
+                        binding.lockedLayout.visibility = View.GONE
+                        binding.swipeRefresh.visibility = View.VISIBLE
+                        viewModel.fetchVideoList()
+                    } else {
+                        binding.lockedLayout.visibility = View.VISIBLE
+                        binding.swipeRefresh.visibility = View.GONE
+                    }
+                }
+            }
         }
 
         lifecycleScope.launchWhenStarted {
@@ -68,5 +89,3 @@ class VideoFragment : Fragment() {
         _binding = null
     }
 }
-
-

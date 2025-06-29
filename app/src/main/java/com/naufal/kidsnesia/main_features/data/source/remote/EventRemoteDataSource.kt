@@ -3,6 +3,7 @@ package com.naufal.kidsnesia.main_features.data.source.remote
 import android.util.Log
 import com.naufal.kidsnesia.auth.data.source.remote.network.ApiResponse
 import com.naufal.kidsnesia.auth.data.source.remote.network.ApiService
+import com.naufal.kidsnesia.main_features.data.source.remote.response.CurrentMembershipResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEventResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailProductResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailVideoResponse
@@ -72,5 +73,9 @@ class EventRemoteDataSource(private val apiService: ApiService) {
 
     suspend fun getDetailVideo(token: String, idVideo: String): DetailVideoResponse {
         return apiService.getDetailVideo(token, idVideo)
+    }
+
+    suspend fun getMembership(token: String): CurrentMembershipResponse {
+        return apiService.getMembership(token)
     }
 }

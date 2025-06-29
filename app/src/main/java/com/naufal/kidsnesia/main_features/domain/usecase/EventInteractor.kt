@@ -1,6 +1,7 @@
 package com.naufal.kidsnesia.main_features.domain.usecase
 
 import com.naufal.kidsnesia.auth.data.Resource
+import com.naufal.kidsnesia.main_features.data.source.remote.response.CurrentMembershipResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailProductResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailVideoResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.EventResponse
@@ -24,5 +25,9 @@ class EventInteractor (private val eventRepository: IEventRepository) : EventUse
 
     override suspend fun getDetailVideo(token: String, idEvent: String): DetailVideoResponse {
         return eventRepository.getDetailVideo(token, idEvent)
+    }
+
+    override suspend fun getMembership(token: String): CurrentMembershipResponse {
+        return eventRepository.getMembership(token)
     }
 }

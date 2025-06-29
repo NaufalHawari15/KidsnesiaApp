@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -13,10 +14,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.naufal.kidsnesia.main_features.presentation.dashboard.DashboardViewModel
 import com.naufal.kidsnesia.databinding.ActivityMainBinding
+import com.naufal.kidsnesia.main_features.presentation.video.VideoViewModel
 import com.naufal.kidsnesia.ui.welcome.WelcomeActivity
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
-class       MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: DashboardViewModel = get()
 
@@ -26,6 +29,17 @@ class       MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
+
+        lifecycleScope.launch {
+            try {
+                val token = viewModel.getToken()
+                val response = viewModel.checkMembership("Bearer $token")
+                val isActive = response.data?.statusMembership == "Aktif"
+                viewModel.saveMembershipStatus(isActive)
+            } catch (e: Exception) {
+                viewModel.saveMembershipStatus(false)
+            }
+        }
 
         val navView = binding.navView
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
@@ -44,6 +58,10 @@ class       MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        // Cek intent dari UploadMemberActivity
+        if (intent.getStringExtra("navigateTo") == "video") {
+            navView.selectedItemId = R.id.navigation_video
+        }
 //        observeSession()
     }
 

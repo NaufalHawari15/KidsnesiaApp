@@ -7,6 +7,7 @@ import com.naufal.kidsnesia.auth.data.source.remote.response.OtpResponse
 import com.naufal.kidsnesia.auth.data.source.remote.response.RegisterRequest
 import com.naufal.kidsnesia.auth.data.source.remote.response.RegisterResponse
 import com.naufal.kidsnesia.auth.data.source.remote.response.ResendOtpResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.CurrentMembershipResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEventResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailProductResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailVideoResponse
@@ -28,10 +29,13 @@ import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartMerch
 import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMembershipRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMembershipResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMerchRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiMembershipResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiResponse
 import okhttp3.MultipartBody
@@ -183,6 +187,24 @@ interface ApiService {
         @Path("idVideo") idVideo: String
     ): DetailVideoResponse
 
+    @POST("membership")
+    suspend fun pilihBankMembership(
+        @Header("Authorization") token: String,
+        @Body request: PilihBankMembershipRequest
+    ): PilihBankMembershipResponse
+
+    @Multipart
+    @POST("membership/upload-bukti/{idPembayaranMembership}")
+    suspend fun uploadBuktiMembership(
+        @Header("Authorization") token: String,
+        @Path("idPembayaranMembership") idPembayaranMembership: String,
+        @Part file: MultipartBody.Part
+    ): UploadBuktiMembershipResponse
+
+    @GET("membership/current")
+    suspend fun getMembership(
+        @Header("Authorization") token: String
+    ): CurrentMembershipResponse
 
 //    @DELETE ("event/cart/{idPembelianEvent}")
 //    suspend fun deleteCart(

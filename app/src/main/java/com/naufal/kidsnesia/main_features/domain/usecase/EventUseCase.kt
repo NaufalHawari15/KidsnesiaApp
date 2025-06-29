@@ -1,6 +1,7 @@
 package com.naufal.kidsnesia.main_features.domain.usecase
 
 import com.naufal.kidsnesia.auth.data.Resource
+import com.naufal.kidsnesia.main_features.data.source.remote.response.CurrentMembershipResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEventResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailProductResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailVideoResponse
@@ -21,4 +22,6 @@ interface EventUseCase {
     suspend fun getListVideo(token: String): ListVideoResponse
 
     suspend fun getDetailVideo(token: String, idEvent: String): DetailVideoResponse
+
+    suspend fun getMembership(token: String): CurrentMembershipResponse
 }

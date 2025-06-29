@@ -1,6 +1,5 @@
 package com.naufal.kidsnesia.purchase.data.source.remote
 
-import com.naufal.kidsnesia.auth.data.source.remote.network.ApiResponse
 import com.naufal.kidsnesia.auth.data.source.remote.network.ApiService
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.CartMerchResponse
@@ -14,10 +13,13 @@ import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartMerch
 import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMembershipRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMembershipResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMerchRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiMembershipResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiResponse
 import kotlinx.coroutines.Dispatchers
@@ -74,5 +76,12 @@ class PurchaseRemoteDataSource(private val apiService: ApiService) {
 
     suspend fun uploadBuktiMerch(token: String, idPembayaranMerch: String, file: MultipartBody.Part): UploadBuktiMerchResponse {
         return apiService.uploadBuktiMerch(token, idPembayaranMerch, file)
+    }
+
+    suspend fun pilihBankMembership(token: String, request: PilihBankMembershipRequest): PilihBankMembershipResponse {
+        return apiService.pilihBankMembership(token, request)
+    }
+    suspend fun uploadBuktiMembership(token: String, idPembayaranMembership: String, file: MultipartBody.Part): UploadBuktiMembershipResponse {
+        return apiService.uploadBuktiMembership(token, idPembayaranMembership, file)
     }
 }

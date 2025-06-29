@@ -13,10 +13,13 @@ import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartMerch
 import com.naufal.kidsnesia.purchase.data.source.remote.response.DetailCartResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.ListCartResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMembershipRequest
+import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMembershipResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMerchRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankRequest
 import com.naufal.kidsnesia.purchase.data.source.remote.response.PilihBankResponse
+import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiMembershipResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiMerchResponse
 import com.naufal.kidsnesia.purchase.data.source.remote.response.UploadBuktiResponse
 import com.naufal.kidsnesia.purchase.domain.repository.IPurchaseRepository
@@ -70,5 +73,13 @@ class PurchaseInteractor(private val purchaseRepository: IPurchaseRepository) : 
 
     override suspend fun uploadBuktiMerch(token: String, idPembayaranMerch: String, file: MultipartBody.Part): UploadBuktiMerchResponse {
         return purchaseRepository.uploadBuktiMerch(token, idPembayaranMerch, file)
+    }
+
+    override suspend fun pilihBankMembership(token: String, request: PilihBankMembershipRequest): PilihBankMembershipResponse {
+        return purchaseRepository.pilihBankMembership(token, request)
+    }
+
+    override suspend fun uploadBuktiMembership(token: String, idPembayaranMembership: String, file: MultipartBody.Part): UploadBuktiMembershipResponse {
+        return purchaseRepository.uploadBuktiMembership(token, idPembayaranMembership, file)
     }
 }

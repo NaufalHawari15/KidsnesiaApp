@@ -20,10 +20,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".purchase.presentation.transaksi.membership.UploadMemberActivity"
+            android:exported="false" />
+        <activity
+            android:name=".purchase.presentation.transaksi.membership.TransaksiMembershipActivity"
+            android:exported="false" />
+        <activity
             android:name=".main_features.presentation.detail.detail_video.VideoPlayerActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="sensor"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="sensor" />
         <activity
             android:name=".main_features.presentation.detail.detail_video.DetailVideoActivity"
             android:exported="false" />

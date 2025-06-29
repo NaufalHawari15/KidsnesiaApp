@@ -15,12 +15,19 @@ class AuthLocalDataSource(private val userPreference: UserPreference) {
 
     fun getSession(): Flow<UserModel> = userPreference.getSession()
 
+    suspend fun getToken(): String {
+        return getSession().first().token
+    }
+
     suspend fun logout() {
         userPreference.logout()
     }
 
-    suspend fun getToken(): String {
-        return getSession().first().token
+    suspend fun saveMembershipStatus(isMember: Boolean) {
+        userPreference.saveMembershipStatus(isMember)
+    }
+
+    fun getMembershipStatus(): Flow<Boolean> {
+        return userPreference.getMembershipStatus()
     }
 }
-

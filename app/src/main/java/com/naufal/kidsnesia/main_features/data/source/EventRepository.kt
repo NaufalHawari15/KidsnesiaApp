@@ -3,6 +3,7 @@ package com.naufal.kidsnesia.main_features.data.source
 import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.auth.data.source.remote.network.ApiResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.EventRemoteDataSource
+import com.naufal.kidsnesia.main_features.data.source.remote.response.CurrentMembershipResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEventResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailProductResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailVideoResponse
@@ -66,5 +67,9 @@ class EventRepository(
 
     override suspend fun getDetailVideo(token: String, idEvent: String): DetailVideoResponse {
         return eventRemoteDataSource.getDetailVideo(token, idEvent)
+    }
+
+    override suspend fun getMembership(token: String): CurrentMembershipResponse {
+        return eventRemoteDataSource.getMembership(token)
     }
 }

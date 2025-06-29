@@ -1,18 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipeRefresh"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="?attr/actionBarSize"
-    android:clipToPadding="false"
-    android:fillViewport="true">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".main_features.presentation.video.VideoFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvVideos"
+    <!-- Layout konten video -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp"
-        tools:listitem="@layout/item_video"/>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        android:visibility="gone">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvVideos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_video"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <!-- Layout jika belum jadi member -->
+    <LinearLayout
+        android:id="@+id/lockedLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ajakan_membership"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:paddingBottom="24dp" />
+
+        <Button
+            android:id="@+id/btnDaftarMembership"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/daftar_membership" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -55,7 +55,7 @@ class DetailMerchActivity : AppCompatActivity() {
 
         // Sembunyikan action bar saja (jika ada)
         supportActionBar?.hide()
-    }
+    } 
 
     private fun observeDetail() {
         lifecycleScope.launch {
