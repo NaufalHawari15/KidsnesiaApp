@@ -7,12 +7,22 @@ import com.naufal.kidsnesia.auth.data.source.remote.response.OtpResponse
 import com.naufal.kidsnesia.auth.data.source.remote.response.RegisterRequest
 import com.naufal.kidsnesia.auth.data.source.remote.response.RegisterResponse
 import com.naufal.kidsnesia.auth.data.source.remote.response.ResendOtpResponse
+import com.naufal.kidsnesia.auth.data.source.remote.response.ResetPassRequest
+import com.naufal.kidsnesia.auth.data.source.remote.response.ResetPassResponse
+import com.naufal.kidsnesia.auth.data.source.remote.response.SendEmailRequest
+import com.naufal.kidsnesia.auth.data.source.remote.response.SendEmailResponse
+import com.naufal.kidsnesia.auth.data.source.remote.response.VerifyOtpRequest
+import com.naufal.kidsnesia.auth.data.source.remote.response.VerifyOtpResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.CurrentMembershipResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEventResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailNotaEventResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailNotaMerchResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailProductResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailVideoResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.EventResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.ListVideoResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.NotaEventResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.NotaMerchResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.NotaResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.PelangganResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.ProductResponse
@@ -67,6 +77,23 @@ interface ApiService {
     suspend fun resend (
         @Header("Authorization") tokenVerifikasi: String
     ): ResendOtpResponse
+
+    @POST("send-reset-email")
+    suspend fun sendEmail(
+        @Body request: SendEmailRequest
+    ): SendEmailResponse
+
+    @POST("verify-reset-otp")
+    suspend fun verifyResetOtp(
+        @Body request: VerifyOtpRequest
+    ): VerifyOtpResponse
+
+    @POST("reset-password")
+    @Headers("Content-Type: application/json", "Accept: application/json")
+    suspend fun resetPass(
+        @Body request: ResetPassRequest,
+        @Header("Authorization") tokenReset: String
+    ): ResetPassResponse
 
     @POST("login")
     suspend fun login (
@@ -124,6 +151,28 @@ interface ApiService {
         @Path("idPembayaranEvent") id: String,
         @Part file: MultipartBody.Part
     ): UploadBuktiResponse
+
+    @GET("nota-event")
+    suspend fun getNotaEvent(
+        @Header("Authorization") token: String
+    ): NotaEventResponse
+
+    @GET("nota-merch")
+    suspend fun getNotaMerch(
+        @Header("Authorization") token: String
+    ): NotaMerchResponse
+
+    @GET("nota-event/{idPembelianEvent}")
+    suspend fun getDetailNotaEvent(
+        @Header("Authorization") token: String,
+        @Path("idPembelianEvent") idPembelianEvent: String
+    ): DetailNotaEventResponse
+
+    @GET("nota-merch/{idPembelianMerch}")
+    suspend fun getDetailNotaMerch(
+        @Header("Authorization") token: String,
+        @Path("idPembelianMerch") idPembelianMerch: String
+    ): DetailNotaMerchResponse
 
     @GET("merch")
     suspend fun getProduct(

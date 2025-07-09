@@ -5,10 +5,14 @@ import com.naufal.kidsnesia.auth.data.source.remote.network.ApiResponse
 import com.naufal.kidsnesia.auth.data.source.remote.network.ApiService
 import com.naufal.kidsnesia.main_features.data.source.remote.response.CurrentMembershipResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEventResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailNotaEventResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailNotaMerchResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailProductResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailVideoResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.EventResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.ListVideoResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.NotaEventResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.NotaMerchResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.ProductResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -77,5 +81,21 @@ class EventRemoteDataSource(private val apiService: ApiService) {
 
     suspend fun getMembership(token: String): CurrentMembershipResponse {
         return apiService.getMembership(token)
+    }
+
+    suspend fun getNotaEvent(token: String): NotaEventResponse {
+        return apiService.getNotaEvent(token)
+    }
+
+    suspend fun getNotaMerch(token: String): NotaMerchResponse {
+        return apiService.getNotaMerch(token)
+    }
+
+    suspend fun getDetailNotaEVent(token: String, idPembelianEvent: String): DetailNotaEventResponse {
+        return apiService.getDetailNotaEvent(token, idPembelianEvent)
+    }
+
+    suspend fun getDetailNotaMerch(token: String, idPembelianMerch: String): DetailNotaMerchResponse {
+        return apiService.getDetailNotaMerch(token, idPembelianMerch)
     }
 }

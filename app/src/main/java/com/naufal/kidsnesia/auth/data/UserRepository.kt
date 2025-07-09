@@ -8,6 +8,12 @@ import com.naufal.kidsnesia.auth.data.source.remote.response.OtpRequest
 import com.naufal.kidsnesia.auth.data.source.remote.response.OtpResponse
 import com.naufal.kidsnesia.auth.data.source.remote.response.RegisterResponse
 import com.naufal.kidsnesia.auth.data.source.remote.response.ResendOtpResponse
+import com.naufal.kidsnesia.auth.data.source.remote.response.ResetPassRequest
+import com.naufal.kidsnesia.auth.data.source.remote.response.ResetPassResponse
+import com.naufal.kidsnesia.auth.data.source.remote.response.SendEmailRequest
+import com.naufal.kidsnesia.auth.data.source.remote.response.SendEmailResponse
+import com.naufal.kidsnesia.auth.data.source.remote.response.VerifyOtpRequest
+import com.naufal.kidsnesia.auth.data.source.remote.response.VerifyOtpResponse
 import com.naufal.kidsnesia.auth.domain.model.UserModel
 import com.naufal.kidsnesia.auth.domain.repository.IUserRepository
 import com.naufal.kidsnesia.main_features.data.source.remote.response.PelangganResponse
@@ -44,6 +50,39 @@ class UserRepository(
         emit(Resource.Loading())
         authRemoteDataSource.resendOtp(tokenVerifikasi).collect { response ->
             when (response) {
+                is ApiResponse.Success -> emit(Resource.Success(response.data))
+                is ApiResponse.Error -> emit(Resource.Error(response.errorMessage))
+                ApiResponse.Empty -> emit(Resource.Error("Empty response"))
+            }
+        }
+    }
+
+    override fun sendEmail(request: SendEmailRequest): Flow<Resource<SendEmailResponse>> = flow {
+        emit(Resource.Loading())
+        authRemoteDataSource.sendEmail(request).collect { response ->
+            when(response) {
+                is ApiResponse.Success -> emit(Resource.Success(response.data))
+                is ApiResponse.Error -> emit(Resource.Error(response.errorMessage))
+                ApiResponse.Empty -> emit(Resource.Error("Empty response"))
+            }
+        }
+    }
+
+    override fun verifyResetOtp(request: VerifyOtpRequest): Flow<Resource<VerifyOtpResponse>> = flow {
+        emit(Resource.Loading())
+        authRemoteDataSource.verifyResetOtp(request).collect { response ->
+            when(response) {
+                is ApiResponse.Success -> emit(Resource.Success(response.data))
+                is ApiResponse.Error -> emit(Resource.Error(response.errorMessage))
+                ApiResponse.Empty -> emit(Resource.Error("Empty response"))
+            }
+        }
+    }
+
+    override fun resetPass(request: ResetPassRequest, tokenReset: String): Flow<Resource<ResetPassResponse>> = flow {
+        emit(Resource.Loading())
+        authRemoteDataSource.resetPass(request, tokenReset).collect { response ->
+            when(response) {
                 is ApiResponse.Success -> emit(Resource.Success(response.data))
                 is ApiResponse.Error -> emit(Resource.Error(response.errorMessage))
                 ApiResponse.Empty -> emit(Resource.Error("Empty response"))

@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import retrofit2.HttpException
 
 class RegisterViewModel(private val userUseCase: UserUseCase) : ViewModel() {
     private val _registerResult = MutableLiveData<Resource<RegisterResponse>>()
@@ -32,8 +34,20 @@ class RegisterViewModel(private val userUseCase: UserUseCase) : ViewModel() {
                     delay(200)
                 }
                 .catch { e ->
-                    _registerResult.postValue(Resource.Error(e.localizedMessage ?: "Unknown Error"))
-                    registerState.value = Resource.Error(e.localizedMessage ?: "Unknown Error")
+                    val errorMessage = if (e is HttpException) {
+                        val errorBody = e.response()?.errorBody()?.string()
+                        try {
+                            val jsonObj = JSONObject(errorBody ?: "")
+                            jsonObj.toString() // Kirim seluruh JSON sebagai string
+                        } catch (ex: Exception) {
+                            errorBody ?: "Unknown error"
+                        }
+                    } else {
+                        e.localizedMessage ?: "Unknown error"
+                    }
+
+                    _registerResult.postValue(Resource.Error(errorMessage))
+                    registerState.value = Resource.Error(errorMessage)
                 }
                 .collect { result ->
                     _registerResult.postValue(result)

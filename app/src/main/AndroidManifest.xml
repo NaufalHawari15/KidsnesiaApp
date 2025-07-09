@@ -20,6 +20,24 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".main_features.presentation.nota.detail_nota.merch.DetailNotaMerchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main_features.presentation.nota.detail_nota.event.DetailNotaEventActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main_features.presentation.nota.NotaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".auth.presentasi.reset_pass.new_pass.ResetPassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".auth.presentasi.reset_pass.reset_otp.ResetOtpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".auth.presentasi.reset_pass.confirm_email.ConfirmEmailActivity"
+            android:exported="false" />
+        <activity
             android:name=".purchase.presentation.transaksi.membership.UploadMemberActivity"
             android:exported="false" />
         <activity

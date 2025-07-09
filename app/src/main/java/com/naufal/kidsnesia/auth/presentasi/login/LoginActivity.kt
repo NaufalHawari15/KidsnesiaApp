@@ -7,9 +7,11 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextPaint
+import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
@@ -18,10 +20,13 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.naufal.kidsnesia.MainActivity
 import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.auth.presentasi.register.RegisterActivity
+import com.naufal.kidsnesia.auth.presentasi.reset_pass.confirm_email.ConfirmEmailActivity
 import com.naufal.kidsnesia.databinding.ActivityLoginBinding
 import org.koin.android.ext.android.get
 
@@ -64,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
         setupView()
         setupAction()
         setupObserver()
+        setupPasswordValidation()
         playAnimation()
     }
 
@@ -81,6 +87,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
+        binding.textLupaPassword.setOnClickListener {
+            startActivity(Intent(this, ConfirmEmailActivity::class.java))
+        }
+
         binding.buttonLogin.setOnClickListener {
             val email = binding.editTextEmail.text.toString().trim()
             val password = binding.editTextPassword.text.toString().trim()
@@ -124,6 +134,31 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun setupPasswordValidation() {
+        val passwordEditText = findViewById<TextInputEditText>(R.id.editTextPassword)
+        val passwordLayout = findViewById<TextInputLayout>(R.id.passwordLayout)
+
+        passwordEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val password = s.toString()
+
+                val error = when {
+                    password.isEmpty() -> "Password tidak boleh kosong"
+                    password.length < 12 -> "Minimal 12 karakter"
+                    !password.matches(Regex(".*[A-Z].*")) -> "Harus ada huruf besar"
+                    !password.matches(Regex(".*[0-9].*")) -> "Harus ada angka"
+                    !password.matches(Regex(".*[!@#\$%^&*(),.?\":{}|<>].*")) -> "Harus ada karakter spesial"
+                    else -> null
+                }
+
+                passwordLayout.error = error
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
     }
 
     private fun playAnimation() {

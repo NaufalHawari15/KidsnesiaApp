@@ -2,6 +2,12 @@ package com.naufal.kidsnesia.auth.domain.usecase
 
 import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.auth.data.source.remote.response.OtpRequest
+import com.naufal.kidsnesia.auth.data.source.remote.response.ResetPassRequest
+import com.naufal.kidsnesia.auth.data.source.remote.response.ResetPassResponse
+import com.naufal.kidsnesia.auth.data.source.remote.response.SendEmailRequest
+import com.naufal.kidsnesia.auth.data.source.remote.response.SendEmailResponse
+import com.naufal.kidsnesia.auth.data.source.remote.response.VerifyOtpRequest
+import com.naufal.kidsnesia.auth.data.source.remote.response.VerifyOtpResponse
 import com.naufal.kidsnesia.auth.domain.model.UserModel
 import com.naufal.kidsnesia.auth.domain.repository.IUserRepository
 import com.naufal.kidsnesia.main_features.data.source.remote.response.PelangganResponse
@@ -21,6 +27,15 @@ class UserInteractor(private val userRepository: IUserRepository) : UserUseCase 
 
     override fun resendOtp(tokenVerifikasi: String) =
         userRepository.resendOtp(tokenVerifikasi)
+
+    override fun sendEmail(request: SendEmailRequest) =
+        userRepository.sendEmail(request)
+
+    override fun verifyResetOtp(request: VerifyOtpRequest) =
+        userRepository.verifyResetOtp(request)
+
+    override fun resetPass(request: ResetPassRequest, tokenReset: String) =
+        userRepository.resetPass(request, tokenReset)
 
     override fun login(
         email: String,

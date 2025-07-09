@@ -53,9 +53,8 @@
     <string name="empty_email">Email cannot be empty</string>
     <string name="invalid_email">Invalid email format</string>
 
-    <string name="empy_pass">Password cannot be empty</string>
-    <string name="no_spacy_pass">Password cannot contain spaces</string>
-    <string name="pass_less_than_8">Password must be at least 8 characters long</string>
+    <string name="empy_pass">Password tidak boleh kosong</string>
+    <string name="no_spacy_pass">Password tidak boleh mengandung spasi</string>
 
     <string name="total_bayar">Total Bayar</string>
 
@@ -85,7 +84,7 @@
     <string name="total_tiket">Jumlah Tiket :</string>
     <string name="total_harga">Total Harga :</string>
     <string name="lanjutkan_pembayaran">Lanjutkan Pembayaran</string>
-    <string name="informasi_transaksi_bank">Silakan masukkan nama bank tempat Anda akan melakukan transfer pembayaran pada kolom di bawah ini.</string>
+    <string name="informasi_transaksi_bank">Silakan lakukan pembayaran dengan cara melakukan transfer ke rekening berikut. Kemudian pilih nama bank tempat anda akan melakukan transfer dan kirim buktinya dalam bentuk foto/screenshot layar.</string>
     <string name="no_rek_tujuan">Nomor Rekening Tujuan : </string>
     <string name="nomor_rek_kidsnesia">7123456789</string>
     <string name="atas_nama">Atas Nama :</string>
@@ -98,5 +97,13 @@
     <string name="promosi_membership">Yuk, jadi bagian dari keluarga Kidsnesia! ✨\n\nDengan hanya membayar Rp 50000, kamu bisa menikmati semua video menarik selama 1 bulan penuh! Jangan sampai ketinggalan konten eksklusif kami!</string>
     <string name="ayo_bergabung">Ayo Bergabung</string>
     <string name="informasi_kirim_bukti_tf">Silahkan kirimkan bukti transfer dengan menekan tombol di bawah ini. Pastikan foto/screenshot bukti transfer memiliki format .jpg/.jpeg/.png</string>
+    <string name="lupa_password">Lupa Password?</string>
+    <string name="masukkan_email_sebelumnya">Silahkan masukkan email \nyang pernah anda \nregistrasikan sebelumnya</string>
+    <string name="masukkan_password_baru">Silahkan masukkan kata sandi \nbaru anda</string>
+    <string name="minimum_pass">Password minimal 12 karakter</string>
+    <string name="harus_ada_huruf_kapital">Harus ada huruf kapital</string>
+    <string name="harus_ada_angka">Harus ada angka</string>
+    <string name="harus_ada_karakter_spesial">Harus ada karakter spesial</string>
+    <string name="nota_pembelian">Nota Pembelian</string>
 
 </resources>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sky_blue"
+    android:fitsSystemWindows="true"
+    tools:context=".auth.presentasi.reset_pass.confirm_email.ConfirmEmailActivity">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/awan_kanan_bawah"
+        android:layout_width="171dp"
+        android:layout_height="149dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/awanfull"
+        app:layout_constraintStart_toEndOf="@+id/awan_full"
+        app:layout_constraintTop_toTopOf="@+id/awan_full" />
+
+    <ImageView
+        android:id="@+id/awan_kiri_bawah"
+        android:layout_width="158dp"
+        android:layout_height="131dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/awanfull"
+        app:layout_constraintEnd_toStartOf="@+id/awan_full"
+        app:layout_constraintTop_toTopOf="@+id/awan_full" />
+
+    <ImageView
+        android:id="@+id/logo_kidsnesia"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:elevation="10dp"
+        android:src="@drawable/logo_kidsnesia"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.191" />
+
+    <ImageView
+        android:id="@+id/awan_full"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/awanfull"
+        app:layout_constraintBottom_toTopOf="@+id/logo_kidsnesia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/awan_kiri"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/awankiri"
+        app:layout_constraintBottom_toTopOf="@+id/logo_kidsnesia"
+        app:layout_constraintEnd_toStartOf="@+id/awan_full" />
+
+    <ImageView
+        android:id="@+id/awan_kanan"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/awan"
+        app:layout_constraintBottom_toTopOf="@+id/logo_kidsnesia"
+        app:layout_constraintStart_toEndOf="@+id/awan_full" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bottom_background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/awan_kanan_bawah"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="32dp"
+            android:paddingBottom="?android:attr/actionBarSize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.161"
+            tools:layout_editor_absoluteX="27dp">
+
+            <TextView
+                android:id="@+id/greeting"
+                android:layout_width="343dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/masukkan_email_sebelumnya"
+                android:textColor="@color/pink"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <com.naufal.kidsnesia.ui.customeview.MyEditEmail
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="#8e8e8e"
+                android:padding="8dp"
+                android:hint="Masukkan email"
+                android:textSize="16sp"
+                android:textColorHint="#8e8e8e"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="3dp"
+                android:ems="10"
+                android:background="@drawable/grey_bg"
+                android:inputType="textEmailAddress"
+                tools:ignore="SpeakableTextPresentCheck"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonKonfirm"
+                android:background="@drawable/blue_button_bg"
+                android:textColor="@color/white"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/konfirmasi"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

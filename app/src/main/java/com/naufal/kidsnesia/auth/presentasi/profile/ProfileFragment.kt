@@ -17,6 +17,7 @@ import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.auth.domain.model.UserModel
 import com.naufal.kidsnesia.ui.about.AboutActivity
 import com.naufal.kidsnesia.databinding.FragmentProfileBinding
+import com.naufal.kidsnesia.main_features.presentation.nota.NotaActivity
 import com.naufal.kidsnesia.ui.welcome.WelcomeActivity
 import org.koin.android.ext.android.get
 
@@ -65,9 +66,9 @@ class ProfileFragment : Fragment() {
             startActivity(Intent(requireContext(), AboutActivity::class.java))
         }
 
-//        binding.buttonFollowedEvent.setOnClickListener {
-//            startActivity(Intent(requireContext(), HistoryEventActivity::class.java))
-//        }
+        binding.buttonFollowedEvent.setOnClickListener {
+            startActivity(Intent(requireContext(), NotaActivity::class.java))
+        }
 
         binding.buttonExit.setOnClickListener {
             viewModel.logout()

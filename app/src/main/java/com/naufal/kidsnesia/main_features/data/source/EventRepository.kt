@@ -5,10 +5,14 @@ import com.naufal.kidsnesia.auth.data.source.remote.network.ApiResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.EventRemoteDataSource
 import com.naufal.kidsnesia.main_features.data.source.remote.response.CurrentMembershipResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailEventResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailNotaEventResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailNotaMerchResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailProductResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.DetailVideoResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.EventResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.ListVideoResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.NotaEventResponse
+import com.naufal.kidsnesia.main_features.data.source.remote.response.NotaMerchResponse
 import com.naufal.kidsnesia.main_features.data.source.remote.response.ProductResponse
 import com.naufal.kidsnesia.main_features.domain.repository.IEventRepository
 import kotlinx.coroutines.flow.Flow
@@ -71,5 +75,21 @@ class EventRepository(
 
     override suspend fun getMembership(token: String): CurrentMembershipResponse {
         return eventRemoteDataSource.getMembership(token)
+    }
+
+    override suspend fun getNotaEvent(token: String): NotaEventResponse {
+        return eventRemoteDataSource.getNotaEvent(token)
+    }
+
+    override suspend fun getNotaMerch(token: String): NotaMerchResponse {
+        return eventRemoteDataSource.getNotaMerch(token)
+    }
+
+    override suspend fun getDetailNotaEvent(token: String, idPembelianEvent: String): DetailNotaEventResponse {
+        return eventRemoteDataSource.getDetailNotaEVent(token, idPembelianEvent)
+    }
+
+    override suspend fun getDetailNotaMerch(token: String, idPembelianMerch: String): DetailNotaMerchResponse {
+        return eventRemoteDataSource.getDetailNotaMerch(token, idPembelianMerch)
     }
 }

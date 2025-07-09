@@ -4,6 +4,7 @@ byteBuddy = "1.14.8"
 cardview = "1.0.0"
 converterGson = "2.11.0"
 datastorePreferences = "1.1.3"
+dotsindicator = "4.3"
 exoplayer = "2.19.1"
 exoplayerDash = "2.19.1"
 exoplayerHls = "2.19.1"
@@ -53,6 +54,7 @@ androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-lived
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3Exoplayer" }
 byte-buddy = { module = "net.bytebuddy:byte-buddy", version.ref = "byteBuddy" }
+dotsindicator = { module = "com.tbuonomo:dotsindicator", version.ref = "dotsindicator" }
 exoplayer = { module = "com.google.android.exoplayer:exoplayer", version.ref = "exoplayer" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 google-exoplayer-dash = { module = "com.google.android.exoplayer:exoplayer-dash", version.ref = "exoplayerDash" }

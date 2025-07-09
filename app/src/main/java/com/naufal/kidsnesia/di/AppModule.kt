@@ -8,6 +8,9 @@ import com.naufal.kidsnesia.auth.presentasi.login.LoginViewModel
 import com.naufal.kidsnesia.auth.presentasi.otp.OtpViewModel
 import com.naufal.kidsnesia.auth.presentasi.profile.ProfileViewModel
 import com.naufal.kidsnesia.auth.presentasi.register.RegisterViewModel
+import com.naufal.kidsnesia.auth.presentasi.reset_pass.confirm_email.ConfirmEmailViewModel
+import com.naufal.kidsnesia.auth.presentasi.reset_pass.new_pass.ResetPassViewModel
+import com.naufal.kidsnesia.auth.presentasi.reset_pass.reset_otp.ResetOtpViewModel
 import com.naufal.kidsnesia.main_features.data.source.EventRepository
 import com.naufal.kidsnesia.main_features.domain.repository.IEventRepository
 import com.naufal.kidsnesia.main_features.domain.usecase.EventInteractor
@@ -17,6 +20,9 @@ import com.naufal.kidsnesia.main_features.presentation.detail.detail_merch.Detai
 import com.naufal.kidsnesia.main_features.presentation.detail.detail_event.DetailViewModel
 import com.naufal.kidsnesia.main_features.presentation.detail.detail_video.DetailVideoViewModel
 import com.naufal.kidsnesia.main_features.presentation.event.EventViewModel
+import com.naufal.kidsnesia.main_features.presentation.nota.NotaViewModel
+import com.naufal.kidsnesia.main_features.presentation.nota.detail_nota.event.DetailNotaEventViewModel
+import com.naufal.kidsnesia.main_features.presentation.nota.detail_nota.merch.DetailNotaMerchViewModel
 import com.naufal.kidsnesia.main_features.presentation.video.VideoViewModel
 import com.naufal.kidsnesia.purchase.data.source.PurchaseRepository
 import com.naufal.kidsnesia.purchase.domain.repository.IPurchaseRepository
@@ -47,6 +53,10 @@ val viewModelModule = module {
     viewModel { RegisterViewModel(get()) }
     viewModel { LoginViewModel(get()) }
     viewModel { OtpViewModel(get()) }
+    viewModel { ConfirmEmailViewModel(get()) }
+    viewModel { ResetOtpViewModel(get()) }
+    viewModel { ResetPassViewModel(get()) }
+
     viewModel { DashboardViewModel(get(), get(), get()) }
     viewModel { EventViewModel(get()) }
     viewModel { DetailViewModel(get(), get(), get()) }
@@ -63,6 +73,10 @@ val viewModelModule = module {
     viewModel { DetailMerchCartViewModel(get(), get()) }
     viewModel { TransaksiViewModel(get(), get()) }
     viewModel { TransaksiMerchViewModel(get(), get()) }
+
+    viewModel { NotaViewModel(get(), get()) }
+    viewModel { DetailNotaEventViewModel(get(), get()) }
+    viewModel { DetailNotaMerchViewModel(get(), get()) }
 //    viewModel { PembelianViewModel(get(), get()) }
 //    viewModel { DetailPembayaranViewModel(get()) }
 //    viewModel { NotaViewModel(get()) }

@@ -5,203 +5,142 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:paddingBottom="?attr/actionBarSize"
-    android:clipToPadding="false"
-    android:fillViewport="true"
     android:background="@color/sky_blue"
     tools:context=".main_features.presentation.dashboard.DashboardFragment">
 
+    <!-- Header Profile -->
+    <ImageView
+        android:id="@+id/imageCart"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_cart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageUser"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/placeholder_profile"
+        android:background="@drawable/circle_border"
+        app:shapeAppearanceOverlay="@style/CircleImageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textUName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:text="@string/hal_dashboard"
-        app:layout_constraintBottom_toBottomOf="@+id/imageUser"
-        app:layout_constraintEnd_toStartOf="@+id/imageCart"
-        app:layout_constraintHorizontal_bias="0.053"
-        app:layout_constraintStart_toEndOf="@+id/imageUser"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintTop_toTopOf="@+id/imageUser"
-        app:layout_constraintVertical_bias="0.709" />
-
-    <ImageView
-        android:id="@+id/imageCart"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:src="@drawable/ic_cart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <!-- LOGO KIDSNESIA DI PERPOTONGAN -->
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageUser"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="28dp"
-        android:background="@drawable/circle_border"
-        android:src="@drawable/foto_placeholder_profile"
-        app:shapeAppearanceOverlay="@style/CircleImageView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageUser"
+        app:layout_constraintStart_toEndOf="@+id/imageUser"
         app:layout_constraintEnd_toStartOf="@+id/imageCart"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintHorizontal_bias="0" />
 
+    <!-- Logo -->
     <ImageView
         android:id="@+id/logo_kidsnesia"
-        android:layout_width="400dp"
-        android:layout_height="0dp"
-        android:elevation="20dp"
-        android:layout_marginBottom="-60dp"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:src="@drawable/logo_kidsnesia"
-        app:layout_constraintBottom_toTopOf="@+id/background_bottom"
+        app:layout_constraintTop_toBottomOf="@id/imageUser"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- BACKGROUND BOTTOM HANYA 3/4 LAYAR -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/background_bottom"
-        android:layout_width="match_parent"
+    <!-- Konten Scrollable -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollContainer"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:fillViewport="true"
         android:background="@drawable/bottom_background_light"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="0.8"
+        app:layout_constraintTop_toBottomOf="@id/logo_kidsnesia"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:fitsSystemWindows="true"
         app:layout_constraintEnd_toEndOf="parent">
 
-    <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/materialButton2"
-            android:layout_width="190dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="70dp"
-            android:background="@drawable/blue_button_dashboard"
-            android:text="Program Kidsnesia"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textAllCaps="false" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton3"
-            android:layout_width="100dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="28dp"
-            android:text="3D Printing"
-            android:textSize="12sp"
-            android:textColor="@color/white"
-            android:background="@drawable/pink_button_dashboard"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialButton2"
-            android:textAllCaps="false" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton"
-            android:layout_width="100dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="28dp"
-            android:text="Kreasi Sablon"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:background="@drawable/pink_button_dashboard"
-            app:layout_constraintStart_toEndOf="@+id/appCompatButton3"
-            app:layout_constraintTop_toBottomOf="@+id/materialButton2"
-            android:textAllCaps="false" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton4"
-            android:layout_width="110dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="28dp"
-            android:text="Aku Cinta Indonesia"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:background="@drawable/pink_button_dashboard"
-            app:layout_constraintStart_toEndOf="@+id/appCompatButton"
-            app:layout_constraintTop_toBottomOf="@+id/materialButton2"
-            android:textAllCaps="false" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton5"
-            android:layout_width="100dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
-            android:text="Programmer CIlik"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:background="@drawable/pink_button_dashboard"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatButton3"
-            android:textAllCaps="false" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton6"
-            android:layout_width="100dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:text="Foto Studio"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:background="@drawable/pink_button_dashboard"
-            app:layout_constraintStart_toEndOf="@+id/appCompatButton5"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatButton"
-            android:textAllCaps="false" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton7"
-            android:layout_width="110dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:text="Sewa Pakaian Adat"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:background="@drawable/pink_button_dashboard"
-            app:layout_constraintStart_toEndOf="@+id/appCompatButton6"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatButton4"
-            android:textAllCaps="false" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton2"
-            android:layout_width="190dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="70dp"
-            android:text="Foto Merchandise"
-            android:textColor="@color/white"
-            android:background="@drawable/blue_button_dashboard"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatButton"
-            android:textAllCaps="false" />
-
-        <!-- RecyclerView for Merchandise -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewMerchandise"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="80dp"
-            android:layout_marginTop="16dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="96dp"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatButton2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center_horizontal">
 
+            <!-- Tombol Program Kidsnesia -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton2"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Program Kidsnesia"
+                android:textAllCaps="false"
+                android:textColor="@color/sky_blue"
+                app:strokeColor="@color/sky_blue"
+                app:strokeWidth="1dp"
+                app:cornerRadius="12dp"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="8dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- Image Slider -->
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/imageSlider"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginTop="16dp"
+                android:clipToPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
+
+            <!-- Dots Indicator -->
+            <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+                android:id="@+id/dotsIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_gravity="center"
+                app:dotsColor="@color/sky_blue"
+                app:selectedDotColor="@color/blue"
+                app:dotsSize="8dp"
+                app:dotsSpacing="6dp" />
+
+            <!-- Tombol Foto Merchandise -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/appCompatButton2"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="List Merchandise"
+                android:textAllCaps="false"
+                android:textColor="@color/sky_blue"
+                app:strokeColor="@color/sky_blue"
+                app:strokeWidth="1dp"
+                app:cornerRadius="12dp"
+                android:layout_marginTop="16dp"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="8dp" />
+
+            <!-- RecyclerView Merchandise -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewMerchandise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="24dp"
+                android:clipToPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:overScrollMode="never" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

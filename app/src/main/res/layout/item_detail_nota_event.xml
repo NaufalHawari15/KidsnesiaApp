@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1"
+    android:padding="12dp"
+    android:background="@android:color/white"
+    android:layout_marginBottom="12dp"
+    android:elevation="2dp"
+    android:layout_marginHorizontal="4dp"
+    android:backgroundTint="@color/md_theme_surface">
+
+    <TableRow>
+        <TextView
+            android:text="Event"
+            android:textStyle="bold"
+            android:paddingVertical="4dp"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/tvNamaEvent"
+            android:text="-"
+            android:paddingVertical="4dp"
+            android:textColor="@android:color/black"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Tanggal"
+            android:textStyle="bold"
+            android:paddingVertical="4dp"/>
+        <TextView
+            android:id="@+id/tvTanggalEvent"
+            android:text="-"
+            android:paddingVertical="4dp"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Jadwal"
+            android:textStyle="bold"
+            android:paddingVertical="4dp"/>
+        <TextView
+            android:id="@+id/tvJadwal"
+            android:text="-"
+            android:paddingVertical="4dp"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Jumlah Tiket"
+            android:textStyle="bold"
+            android:paddingVertical="4dp"/>
+        <TextView
+            android:id="@+id/tvJumlah"
+            android:text="-"
+            android:paddingVertical="4dp"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Harga"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_blue_dark"
+            android:paddingVertical="4dp"/>
+        <TextView
+            android:id="@+id/tvHarga"
+            android:text="Rp0"
+            android:textColor="@android:color/holo_blue_dark"
+            android:paddingVertical="4dp"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Subtotal"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_blue_dark"
+            android:paddingVertical="4dp"/>
+        <TextView
+            android:id="@+id/tvSubtotal"
+            android:text="Rp0"
+            android:textColor="@android:color/holo_blue_dark"
+            android:paddingVertical="4dp"/>
+    </TableRow>
+
+</TableLayout>

@@ -177,6 +177,16 @@
                 tools:ignore="SpeakableTextPresentCheck"/>
 
             <TextView
+                android:id="@+id/textErrorEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:text="Error email di sini"/>
+
+
+            <TextView
                 android:id="@+id/textKataSandi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -13,16 +13,15 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background  ="@color/sky_blue"
+        android:background="@color/sky_blue"
         android:elevation="4dp"
         app:title="@string/lanjutkan_pembayaran"
         app:titleCentered="true"
         app:titleTextColor="@android:color/white"
         app:popupTheme="@style/ThemeOverlay.Material3.Light"
         app:layout_constraintTop_toTopOf="parent" />
-<!--    app:navigationIcon="@drawable/ic_arrow_back"-->
-    <!-- Input Rekening -->
 
+    <!-- Frame bank -->
     <FrameLayout
         android:id="@+id/frame_bank"
         android:layout_width="match_parent"
@@ -32,7 +31,6 @@
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.351">
@@ -94,26 +92,38 @@
         android:text="@string/informasi_transaksi_bank"
         android:textColor="@color/black"
         android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textNoRekTujuan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frame_bank"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Tambahan informasi rekening -->
+    <TextView
+        android:id="@+id/textInformasiRekening"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="4dp"
+        android:textStyle="bold"
+        android:text="Nama Penerima: PT. Kidsnesia Edupark Kreasi\nRekening tujuan: 9001078962"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textNoRekTujuan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="12dp"
         android:text="@string/nama_bank"
         android:textColor="@color/black"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInformasiRekening"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frame_bank" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <AutoCompleteTextView
         android:id="@+id/textNamaBank"
@@ -130,10 +140,9 @@
         android:drawableEnd="@drawable/ic_arrow_drop_down_24"
         android:drawableRight="@drawable/ic_arrow_drop_down_24"
         android:drawablePadding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNoRekTujuan"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textNoRekTujuan" />
-
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Upload Bukti Transfer -->
     <Button
@@ -145,7 +154,7 @@
         app:layout_constraintTop_toBottomOf="@id/textNamaBank"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"/>
+        android:layout_marginHorizontal="16dp" />
 
     <ImageView
         android:id="@+id/imagePreview"
@@ -157,8 +166,7 @@
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/buttonUploadBukti"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonKonfirmasi"

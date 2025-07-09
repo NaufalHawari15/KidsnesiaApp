@@ -155,22 +155,40 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <com.naufal.kidsnesia.ui.customeview.MyEditPassword
-                    android:id="@+id/editTextPassword"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwordLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:textColor="#8e8e8e"
-                    android:padding="8dp"
-                    android:hint="Masukkan sandimu"
-                    android:textSize="16sp"
-                    android:textColorHint="#8e8e8e"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="3dp"
-                    android:ems="10"
-                    android:background="@drawable/grey_bg"
-                    android:inputType="textPassword"
-                    tools:ignore="SpeakableTextPresentCheck"/>
+                    app:endIconMode="password_toggle"
+                    app:endIconTint="@color/black">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Masukkan sandimu"
+                        android:inputType="textPassword"
+                        android:padding="8dp"
+                        android:textColor="#8e8e8e"
+                        android:textColorHint="#8e8e8e"
+                        android:textSize="16sp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/textLupaPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/lupa_password"
+                    android:textColor="@color/pink"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:focusable="true" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/buttonLogin"

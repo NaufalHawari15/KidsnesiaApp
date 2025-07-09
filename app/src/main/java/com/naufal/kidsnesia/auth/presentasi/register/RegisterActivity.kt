@@ -25,6 +25,7 @@ import com.naufal.kidsnesia.auth.presentasi.login.LoginActivity
 import com.naufal.kidsnesia.auth.presentasi.otp.OtpActivity
 import com.naufal.kidsnesia.databinding.ActivityRegisterBinding
 import com.naufal.kidsnesia.ui.welcome.WelcomeActivity
+import org.json.JSONObject
 import org.koin.android.ext.android.get
 
 class RegisterActivity : AppCompatActivity() {
@@ -108,13 +109,42 @@ class RegisterActivity : AppCompatActivity() {
             if (!isFinishing) {
                 alertDialog?.dismiss()
 
-                if (result is Resource.Success) {
-                    val intent = Intent(this@RegisterActivity, OtpActivity::class.java).apply {
-                        putExtra("email", result.data?.registerResult?.email)
-                        putExtra("token_verifikasi", result.data?.registerResult?.tokenVerifikasi)
+                when (result) {
+                    is Resource.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.buttonRegist.isEnabled = false
+                        binding.textErrorEmail.visibility = View.GONE
                     }
-                    startActivity(intent)
-                    finish()
+
+                    is Resource.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.buttonRegist.isEnabled = true
+                        binding.textErrorEmail.visibility = View.GONE
+
+                        // ✅ Tampilkan Toast
+                        Toast.makeText(this, "Registrasi berhasil, silakan verifikasi OTP", Toast.LENGTH_LONG).show()
+
+                        val intent = Intent(this@RegisterActivity, OtpActivity::class.java).apply {
+                            putExtra("email", result.data?.registerResult?.email)
+                            putExtra("token_verifikasi", result.data?.registerResult?.tokenVerifikasi)
+                        }
+                        startActivity(intent)
+                        finish()
+                    }
+
+                    is Resource.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.buttonRegist.isEnabled = true
+
+                        val message = result.message ?: "Terjadi kesalahan"
+
+                        if (message.contains("Email sudah dipakai", ignoreCase = true)) {
+                            binding.textErrorEmail.text = message
+                            binding.textErrorEmail.visibility = View.VISIBLE
+                        } else {
+                            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             }
         }

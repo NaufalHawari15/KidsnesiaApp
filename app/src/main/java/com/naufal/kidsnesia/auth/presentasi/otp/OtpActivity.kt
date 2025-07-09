@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
@@ -50,14 +51,26 @@ class OtpActivity : AppCompatActivity() {
 
         viewModel.otpResult.observe(this) { result ->
             when (result) {
-                is Resource.Loading -> Toast.makeText(this, "Verifikasi OTP...", Toast.LENGTH_SHORT).show()
+                is Resource.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.button.isEnabled = false
+                }
+
                 is Resource.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.button.isEnabled = true
                     Toast.makeText(this, "OTP berhasil diverifikasi", Toast.LENGTH_SHORT).show()
+
                     startActivity(Intent(this, LoginActivity::class.java))
                     finish()
                 }
+
                 is Resource.Error -> {
-                    Toast.makeText(this, "OTP gagal: ${result.message}", Toast.LENGTH_SHORT).show()
+                    binding.progressBar.visibility = View.GONE
+                    binding.button.isEnabled = true
+
+                    val errorMessage = result.message ?: "Terjadi kesalahan saat verifikasi"
+                    Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -14,4 +14,15 @@
     <color name="whiteCardColor">#FFFFFF</color>
     <color name="primaryTextColor">#333333</color>
     <color name="errorColor">#FF5252</color>
+
+    <color name="md_theme_primary">#6750A4</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_surface">#FFFBFE</color>
+    <color name="md_theme_onSurface">#1C1B1F</color>
+    <color name="md_theme_outline">#79747E</color>
+
+    <color name="hijau_status">#388E3C</color> <!-- Hijau sukses -->
+    <color name="kuning_status">#FBC02D</color> <!-- Kuning untuk menunggu -->
+
+
 </resources>

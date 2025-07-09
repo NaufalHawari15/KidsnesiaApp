@@ -108,4 +108,6 @@ dependencies {
     implementation (libs.google.exoplayer.ui)
     implementation (libs.google.exoplayer.hls)
     implementation (libs.google.exoplayer.dash)
+
+    implementation (libs.dotsindicator)
 }
