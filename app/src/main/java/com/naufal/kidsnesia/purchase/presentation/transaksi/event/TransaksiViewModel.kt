@@ -24,7 +24,6 @@ class TransaksiViewModel(
     private val purchaseUseCase: PurchaseUseCase,
     private val authLocalDataSource: AuthLocalDataSource
 ) : ViewModel() {
-
     private val _loadingState = MutableLiveData<Boolean>()
     val loadingState: LiveData<Boolean> = _loadingState
 

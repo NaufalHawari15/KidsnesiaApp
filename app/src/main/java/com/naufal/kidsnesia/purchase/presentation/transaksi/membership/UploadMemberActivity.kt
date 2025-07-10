@@ -3,6 +3,8 @@ package com.naufal.kidsnesia.purchase.presentation.transaksi.membership
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -53,17 +55,20 @@ class UploadMemberActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         viewModel.loading.observe(this) { isLoading ->
+            binding.loadingOverlay.visibility = if (isLoading) View.VISIBLE else View.GONE
             binding.buttonKonfirmasi.isEnabled = !isLoading
-            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
         viewModel.uploadResult.observe(this) { response ->
             if (response?.error == false) {
-                Toast.makeText(this, "Upload berhasil", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("navigateTo", "video")
-                startActivity(intent)
-                finishAffinity()
+                binding.successOverlay.visibility = View.VISIBLE
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("navigateTo", "video")
+                    startActivity(intent)
+                    finishAffinity()
+                }, 2000)
             } else {
                 Toast.makeText(this, "Upload gagal: ${response?.message}", Toast.LENGTH_SHORT).show()
             }
@@ -81,6 +86,7 @@ class UploadMemberActivity : AppCompatActivity() {
         if (requestCode == 101 && resultCode == RESULT_OK && data != null) {
             val uri = data.data ?: return
             selectedImageFile = FileUtil.from(this, uri)
+            binding.cardPreview.visibility = View.VISIBLE
             binding.imagePreview.apply {
                 setImageURI(uri)
                 visibility = View.VISIBLE

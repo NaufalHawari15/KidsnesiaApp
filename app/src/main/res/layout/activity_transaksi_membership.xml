@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/sky_blue"
+    android:background="@drawable/gradient_background"
     tools:context=".purchase.presentation.transaksi.membership.TransaksiMembershipActivity">
 
     <!-- Toolbar -->
@@ -154,6 +154,7 @@
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/pink_button_bg"
+        android:foreground="?attr/selectableItemBackground"
         android:gravity="center"
         android:text="@string/lanjutkan"
         android:textAllCaps="false"

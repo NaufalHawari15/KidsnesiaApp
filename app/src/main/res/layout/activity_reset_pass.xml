@@ -1,182 +1,351 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/sky_blue"
+    android:background="@drawable/gradient_background"
     android:fitsSystemWindows="true"
     tools:context=".auth.presentasi.reset_pass.new_pass.ResetPassActivity">
 
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+    <!-- Awan Mengambang -->
     <ImageView
-        android:id="@+id/awan_kanan_bawah"
-        android:layout_width="171dp"
-        android:layout_height="149dp"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/awanfull"
-        app:layout_constraintStart_toEndOf="@+id/awan_full"
-        app:layout_constraintTop_toTopOf="@+id/awan_full" />
-
-    <ImageView
-        android:id="@+id/awan_kiri_bawah"
-        android:layout_width="158dp"
-        android:layout_height="131dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/awanfull"
-        app:layout_constraintEnd_toStartOf="@+id/awan_full"
-        app:layout_constraintTop_toTopOf="@+id/awan_full" />
-
-    <ImageView
-        android:id="@+id/logo_kidsnesia"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:elevation="10dp"
-        android:src="@drawable/logo_kidsnesia"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.191" />
-
-    <ImageView
-        android:id="@+id/awan_full"
+        android:id="@+id/cloud1"
         android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:alpha="0.3"
         android:src="@drawable/awanfull"
-        app:layout_constraintBottom_toTopOf="@+id/logo_kidsnesia"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/awan_kiri"
+        android:id="@+id/cloud2"
         android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:src="@drawable/awankiri"
-        app:layout_constraintBottom_toTopOf="@+id/logo_kidsnesia"
-        app:layout_constraintEnd_toStartOf="@+id/awan_full" />
+        android:layout_height="125dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="48dp"
+        android:alpha="0.4"
+        android:src="@drawable/awanfull"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/awan_kanan"
+        android:id="@+id/cloud3"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:alpha="0.2"
+        android:src="@drawable/awanfull"
+        app:layout_constraintTop_toBottomOf="@id/logoKidsnesia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logoKidsnesia"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="24dp"
-        android:src="@drawable/awan"
-        app:layout_constraintBottom_toTopOf="@+id/logo_kidsnesia"
-        app:layout_constraintStart_toEndOf="@+id/awan_full" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/bottom_background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/logo_kidsnesia"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/awan_kanan_bawah"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Kontainer Scroll untuk Form -->
+    <ScrollView
+        android:id="@+id/formScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="ifContentScrolls"
+        app:layout_constraintTop_toBottomOf="@id/cloud3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
+            android:id="@+id/formContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="32dp"
-            android:paddingBottom="?android:attr/actionBarSize"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.161"
-            tools:layout_editor_absoluteX="27dp">
+            android:padding="32dp">
 
+            <!-- Greeting -->
             <TextView
                 android:id="@+id/greeting"
-                android:layout_width="343dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
                 android:text="@string/masukkan_password_baru"
                 android:textColor="@color/pink"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="24sp"
+                android:layout_marginBottom="8dp" />
 
+            <!-- Sub-greeting -->
             <TextView
-                android:id="@+id/textPass"
+                android:id="@+id/nextText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/password"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <com.naufal.kidsnesia.ui.customeview.MyEditPassword
-                android:id="@+id/editTextPass"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:textColor="#8e8e8e"
-                android:padding="8dp"
-                android:hint="Masukkan kata sandi"
+                android:gravity="center"
+                android:text="Buat kata sandi baru untuk akun Anda"
+                android:textColor="@color/grey_dark"
                 android:textSize="16sp"
-                android:textColorHint="#8e8e8e"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="3dp"
-                android:ems="10"
-                android:background="@drawable/grey_bg"
-                android:inputType="textEmailAddress"
-                tools:ignore="SpeakableTextPresentCheck"/>
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginBottom="24dp" />
 
-            <TextView
-                android:id="@+id/textConfirmPass"
+            <!-- Password Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Konfirmasi Kata Sandi"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:hint="Kata Sandi Baru"
+                android:layout_marginBottom="16dp"
+                app:boxStrokeColor="@color/pink"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/pink"
+                app:startIconDrawable="@drawable/ic_lock"
+                app:startIconTint="@color/pink"
+                app:errorEnabled="true">
 
-            <com.naufal.kidsnesia.ui.customeview.MyEditPassword
-                android:id="@+id/editTextConfirmPass"
+                <com.naufal.kidsnesia.ui.customeview.MyEditPassword
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:inputType="textPassword"
+                    android:minHeight="56dp"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Confirm Password Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutConfirmPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:textColor="#8e8e8e"
-                android:padding="8dp"
-                android:hint="Masukkan kata sandi"
-                android:textSize="16sp"
-                android:textColorHint="#8e8e8e"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="3dp"
-                android:ems="10"
-                android:background="@drawable/grey_bg"
-                android:inputType="textPassword"
-                tools:ignore="SpeakableTextPresentCheck"/>
+                android:layout_height="wrap_content"
+                android:hint="Konfirmasi Kata Sandi"
+                android:layout_marginBottom="24dp"
+                app:boxStrokeColor="@color/pink"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/pink"
+                app:startIconDrawable="@drawable/ic_lock"
+                app:startIconTint="@color/pink"
+                app:errorEnabled="true">
 
+                <com.naufal.kidsnesia.ui.customeview.MyEditPassword
+                    android:id="@+id/editTextConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:inputType="textPassword"
+                    android:minHeight="56dp"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Password Requirements -->
+            <TextView
+                android:id="@+id/passwordRequirements"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Minimal 6 karakter\n• Gunakan kombinasi huruf dan angka"
+                android:textColor="@color/grey_dark"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginBottom="24dp"
+                android:padding="8dp" />
+
+            <!-- Tombol Reset Password -->
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonConfirm"
-                android:background="@drawable/blue_button_bg"
-                android:textColor="@color/white"
-                style="@style/Widget.Material3.Button"
+                android:id="@+id/buttonResetPassword"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="56dp"
+                android:backgroundTint="@color/pink"
+                android:fontFamily="@font/poppins_bold"
                 android:text="@string/konfirmasi"
-                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:cornerRadius="16dp"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Link Kembali ke Login -->
+            <TextView
+                android:id="@+id/textBackToLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Kembali ke halaman login"
+                android:textColor="@color/pink"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"/>
+                android:fontFamily="@font/poppins_regular"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true" />
 
         </LinearLayout>
+    </ScrollView>
+
+    <!-- Overlay Loading -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loadingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="#80000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="10dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="32dp"
+                android:gravity="center">
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:indeterminateTint="@color/pink" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mengubah kata sandi..."
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_regular" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Success Overlay -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/successOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        android:elevation="10dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="32dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_check_circle"
+                    app:tint="@color/sky_blue" />
+
+                <TextView
+                    android:id="@+id/successMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kata sandi berhasil diubah!"
+                    android:textColor="@color/pink"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:layout_marginTop="16dp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Error Overlay -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/errorOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        android:elevation="10dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="32dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_error"
+                    app:tint="@color/pink" />
+
+                <TextView
+                    android:id="@+id/errorMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Terjadi kesalahan!"
+                    android:textColor="@color/pink"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:layout_marginTop="16dp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

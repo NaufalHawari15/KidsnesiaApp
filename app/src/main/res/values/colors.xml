@@ -25,4 +25,26 @@
     <color name="kuning_status">#FBC02D</color> <!-- Kuning untuk menunggu -->
 
 
+
+    <!-- New modern colors -->
+    <color name="grey_dark">#616161</color>
+    <color name="grey_light">#F5F5F5</color>
+    <color name="success_green">#4CAF50</color>
+    <color name="error_red">#F44336</color>
+    <color name="warning_orange">#FF9800</color>
+
+    <!-- Gradient colors -->
+    <color name="gradient_start">#E3F2FD</color>
+    <color name="gradient_center">#BBDEFB</color>
+    <color name="gradient_end">#90CAF9</color>
+
+    <!-- Material Design colors -->
+    <color name="primary_light">#FFB3E5</color>
+    <color name="primary_dark">#C2185B</color>
+    <color name="accent_light">#81C784</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#BDBDBD</color>
 </resources>

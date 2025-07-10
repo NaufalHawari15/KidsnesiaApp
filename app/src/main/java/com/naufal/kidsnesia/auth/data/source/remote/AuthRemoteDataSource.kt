@@ -40,7 +40,6 @@ class AuthRemoteDataSource(private val apiService: ApiService) {
                 } catch (ex: Exception) {
                     "Terjadi kesalahan"
                 }
-
                 emit(ApiResponse.Error(errorMessage))
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.localizedMessage ?: "Terjadi kesalahan"))
@@ -60,7 +59,7 @@ class AuthRemoteDataSource(private val apiService: ApiService) {
             } catch (ex: Exception) {
                 "Verifikasi OTP gagal"
             }
-            emit(ApiResponse.Error(errorMessage))  // <- tampilkan pesan dari server
+            emit(ApiResponse.Error(errorMessage))
         } catch (e: Exception) {
             emit(ApiResponse.Error(e.localizedMessage ?: "Verifikasi OTP gagal"))
         }
@@ -70,17 +69,63 @@ class AuthRemoteDataSource(private val apiService: ApiService) {
         try {
             val response = apiService.resend("Bearer $tokenVerifikasi")
             emit(ApiResponse.Success(response))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorMessage = try {
+                val json = JSONObject(errorBody ?: "")
+                json.optString("message", "Gagal mengirim ulang OTP")
+            } catch (ex: Exception) {
+                "Gagal mengirim ulang OTP"
+            }
+            emit(ApiResponse.Error(errorMessage))
         } catch (e: Exception) {
             emit(ApiResponse.Error(e.localizedMessage ?: "Gagal mengirim ulang OTP"))
         }
     }.flowOn(Dispatchers.IO)
 
+    // ⬇️ INI YANG DIPERBAIKI
     fun sendEmail(request: SendEmailRequest): Flow<ApiResponse<SendEmailResponse>> = flow {
         try {
+            Log.d("AuthRemoteDataSource", "Sending email request: $request")
             val response = apiService.sendEmail(request)
+            Log.d("AuthRemoteDataSource", "Email sent successfully: $response")
             emit(ApiResponse.Success(response))
+        } catch (e: HttpException) {
+            Log.e("AuthRemoteDataSource", "HTTP Exception: ${e.code()}", e)
+            val errorBody = e.response()?.errorBody()?.string()
+            Log.d("AuthRemoteDataSource", "Error body: $errorBody")
+
+            val errorMessage = try {
+                val json = JSONObject(errorBody ?: "")
+                val message = json.optString("message", "")
+                Log.d("AuthRemoteDataSource", "Parsed message: $message")
+
+                if (message.isNotEmpty()) {
+                    message
+                } else {
+                    // Fallback berdasarkan HTTP code
+                    when (e.code()) {
+                        422 -> "Email tidak terdaftar atau tidak valid"
+                        404 -> "Email tidak ditemukan"
+                        400 -> "Format email tidak valid"
+                        else -> "Terjadi kesalahan pada server"
+                    }
+                }
+            } catch (ex: Exception) {
+                Log.e("AuthRemoteDataSource", "Error parsing JSON", ex)
+                when (e.code()) {
+                    422 -> "Email tidak terdaftar atau tidak valid"
+                    404 -> "Email tidak ditemukan"
+                    400 -> "Format email tidak valid"
+                    else -> "Terjadi kesalahan pada server"
+                }
+            }
+
+            Log.d("AuthRemoteDataSource", "Final error message: $errorMessage")
+            emit(ApiResponse.Error(errorMessage))
         } catch (e: Exception) {
-            emit(ApiResponse.Error(e.localizedMessage ?: "Email yang di masukkan salah!"))
+            Log.e("AuthRemoteDataSource", "General exception", e)
+            emit(ApiResponse.Error(e.localizedMessage ?: "Terjadi kesalahan jaringan"))
         }
     }.flowOn(Dispatchers.IO)
 
@@ -88,6 +133,15 @@ class AuthRemoteDataSource(private val apiService: ApiService) {
         try {
             val response = apiService.verifyResetOtp(request)
             emit(ApiResponse.Success(response))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorMessage = try {
+                val json = JSONObject(errorBody ?: "")
+                json.optString("message", "OTP tidak valid")
+            } catch (ex: Exception) {
+                "OTP tidak valid"
+            }
+            emit(ApiResponse.Error(errorMessage))
         } catch (e: Exception) {
             emit(ApiResponse.Error(e.localizedMessage ?: "OTP tidak valid"))
         }
@@ -97,6 +151,15 @@ class AuthRemoteDataSource(private val apiService: ApiService) {
         try {
             val response = apiService.resetPass(request, "Bearer $tokenReset")
             emit(ApiResponse.Success(response))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorMessage = try {
+                val json = JSONObject(errorBody ?: "")
+                json.optString("message", "Password tidak boleh sama dengan yang sebelumnya")
+            } catch (ex: Exception) {
+                "Password tidak boleh sama dengan yang sebelumnya"
+            }
+            emit(ApiResponse.Error(errorMessage))
         } catch (e: Exception) {
             emit(ApiResponse.Error(e.localizedMessage ?: "Password tidak boleh sama dengan yang sebelumnya"))
         }
@@ -123,19 +186,16 @@ class AuthRemoteDataSource(private val apiService: ApiService) {
             } else {
                 e.localizedMessage ?: "Terjadi kesalahan"
             }
-
             emit(ApiResponse.Error(message))
         }
     }.flowOn(Dispatchers.IO)
 
     fun getCurrentPelanggan(): Flow<ApiResponse<PelangganResponse>> = flow {
         try {
-            val response = apiService.getCurrentPelanggan() // Tidak perlu kirim token manual
+            val response = apiService.getCurrentPelanggan()
             emit(ApiResponse.Success(response))
         } catch (e: Exception) {
             emit(ApiResponse.Error(e.localizedMessage ?: "Unknown Error"))
         }
     }.flowOn(Dispatchers.IO)
-
-
 }
