@@ -5,9 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Typeface
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -18,27 +16,21 @@ import android.text.TextPaint
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.util.Patterns
 import android.view.HapticFeedbackConstants
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowManager
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.OvershootInterpolator
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.snackbar.Snackbar
 import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.auth.presentasi.login.LoginActivity
 import com.naufal.kidsnesia.auth.presentasi.otp.OtpActivity
 import com.naufal.kidsnesia.databinding.ActivityRegisterBinding
-import com.naufal.kidsnesia.ui.welcome.WelcomeActivity
-import org.json.JSONObject
 import org.koin.android.ext.android.get
 
 class RegisterActivity : AppCompatActivity() {
@@ -289,7 +281,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun isValidEmail(email: String): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     private fun showErrorSnackbar(message: String) {

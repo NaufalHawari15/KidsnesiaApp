@@ -9,14 +9,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.appbar.AppBarLayout
 import com.naufal.kidsnesia.R
 import com.naufal.kidsnesia.auth.data.Resource
 import com.naufal.kidsnesia.databinding.FragmentDashboardBinding
 import com.naufal.kidsnesia.main_features.presentation.detail.detail_merch.DetailMerchActivity
 import com.naufal.kidsnesia.purchase.presentation.cart.CartActivity
 import org.koin.android.ext.android.get
+import kotlin.math.abs
 
 class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
@@ -37,6 +40,9 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Setup collapsing toolbar terlebih dahulu
+        setupCollapsingToolbar()
+
         // Tambahan agar padding bottom sesuai tinggi BottomNavigationView
         val bottomPadding = resources.getDimensionPixelSize(R.dimen.bottom_nav_height)
         binding.recyclerViewMerchandise.setPadding(
@@ -46,10 +52,8 @@ class DashboardFragment : Fragment() {
             bottomPadding
         )
 
-        binding.imageCart.setOnClickListener {
-            val intent = Intent(requireContext(), CartActivity::class.java)
-            startActivity(intent)
-        }
+        // Setup click listeners untuk kedua cart button
+        setupClickListeners()
 
         setupImageSlider()
         setupRecyclerView()
@@ -71,7 +75,42 @@ class DashboardFragment : Fragment() {
                 }
             }
         }
+    }
 
+    private fun setupCollapsingToolbar() {
+        // Setup AppBarLayout offset listener untuk transisi smooth
+        binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val totalScrollRange = appBarLayout.totalScrollRange
+            val percentage = abs(verticalOffset).toFloat() / totalScrollRange.toFloat()
+
+            binding.toolbarTitle.alpha = percentage
+            binding.headerContainer.alpha = 1f - percentage
+            binding.logoKidsnesia.alpha = 1f - percentage
+
+            val scale = 1f - (percentage * 0.3f)
+            binding.logoKidsnesia.scaleX = scale
+            binding.logoKidsnesia.scaleY = scale
+
+            // Sembunyikan/munculkan toolbarCart sesuai status collapse
+            binding.toolbarCart.alpha = percentage
+            binding.imageCart.alpha = 1f - percentage
+        })
+    }
+
+    private fun setupClickListeners() {
+        // Cart click listeners untuk kedua button (expanded dan collapsed)
+        binding.imageCart.setOnClickListener {
+            navigateToCart()
+        }
+
+        binding.toolbarCart.setOnClickListener {
+            navigateToCart()
+        }
+    }
+
+    private fun navigateToCart() {
+        val intent = Intent(requireContext(), CartActivity::class.java)
+        startActivity(intent)
     }
 
     private fun setupImageSlider() {
@@ -88,9 +127,14 @@ class DashboardFragment : Fragment() {
         binding.imageSlider.adapter = sliderAdapter
         binding.imageSlider.offscreenPageLimit = 3
 
-        // Animasi scaling
+        // Enhanced page transformer dengan smooth scaling
         binding.imageSlider.setPageTransformer { page, position ->
-            page.scaleY = 0.85f + (1 - kotlin.math.abs(position)) * 0.15f
+            val absPosition = kotlin.math.abs(position)
+            page.apply {
+                scaleY = 0.85f + (1 - absPosition) * 0.15f
+                scaleX = 0.85f + (1 - absPosition) * 0.15f
+                alpha = 0.5f + (1 - absPosition) * 0.5f
+            }
         }
 
         // Connect to dots indicator
@@ -116,10 +160,15 @@ class DashboardFragment : Fragment() {
         })
     }
 
-
     private fun setupRecyclerView() {
+        val spanCount = if (resources.configuration.screenWidthDp >= 600) 3 else 2
         binding.recyclerViewMerchandise.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            GridLayoutManager(requireContext(), spanCount)
+
+        // Add smooth scroll behavior
+        binding.recyclerViewMerchandise.isNestedScrollingEnabled = false
+        binding.recyclerViewMerchandise.setHasFixedSize(true)
+
     }
 
     private fun observeProducts() {

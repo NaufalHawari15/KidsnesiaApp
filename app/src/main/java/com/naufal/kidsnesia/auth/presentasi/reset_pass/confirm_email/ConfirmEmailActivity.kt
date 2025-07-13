@@ -36,7 +36,6 @@ import org.koin.android.ext.android.get
 class ConfirmEmailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityConfirmEmailBinding
     private val viewModel: ConfirmEmailViewModel = get()
-    private var alertDialog: AlertDialog? = null
     private lateinit var cloudAnimators: MutableList<AnimatorSet>
     private lateinit var masterAnimator: AnimatorSet
 
@@ -44,6 +43,7 @@ class ConfirmEmailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityConfirmEmailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         setupView()
         setupAction()
         playAnimation()
