@@ -77,9 +77,4 @@ val viewModelModule = module {
     viewModel { NotaViewModel(get(), get()) }
     viewModel { DetailNotaEventViewModel(get(), get()) }
     viewModel { DetailNotaMerchViewModel(get(), get()) }
-//    viewModel { PembelianViewModel(get(), get()) }
-//    viewModel { DetailPembayaranViewModel(get()) }
-//    viewModel { NotaViewModel(get()) }
-//    viewModel { HistoryViewModel(get()) }
-
 }

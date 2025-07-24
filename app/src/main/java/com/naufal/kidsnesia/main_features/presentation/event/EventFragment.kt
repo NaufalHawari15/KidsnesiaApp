@@ -73,6 +73,7 @@ class EventFragment : Fragment() {
                         }
                         binding.rvEvents.adapter = eventAdapter
                     }
+
                     is Resource.Error -> {
                         binding.progressBar.visibility = View.GONE
                         binding.tvError.apply {

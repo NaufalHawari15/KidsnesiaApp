@@ -73,21 +73,6 @@
             android:name=".auth.presentasi.otp.OtpActivity"
             android:exported="false" />
         <activity
-            android:name=".purchase.presentasion.history.HistoryEventActivity"
-            android:exported="false" />
-        <activity
-            android:name=".purchase.presentasion.nota.NotaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".purchase.presentasion.transaksi.TransaksiActivity"
-            android:exported="false" />
-        <activity
-            android:name=".purchase.presentasion.detail_bayar.DetailPembayaranActivity"
-            android:exported="false" />
-        <activity
-            android:name=".purchase.presentasion.pembelian.PembelianActivity"
-            android:exported="false" />
-        <activity
             android:name=".main_features.presentation.detail.detail_event.DetailActivity"
             android:exported="false" />
         <activity

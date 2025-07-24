@@ -15,7 +15,7 @@
         android:layout_height="125dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:alpha="0.3"
+        android:alpha="0.4"
         android:src="@drawable/awanfull"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +26,7 @@
         android:layout_height="125dp"
         android:layout_marginEnd="24dp"
         android:layout_marginTop="48dp"
-        android:alpha="0.4"
+        android:alpha="0.5"
         android:src="@drawable/awanfull"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,8 +34,8 @@
     <ImageView
         android:id="@+id/cloud3"
         android:layout_width="150dp"
-        android:layout_height="80dp"
-        android:alpha="0.2"
+        android:layout_height="125dp"
+        android:alpha="0.3"
         android:src="@drawable/awanfull"
         app:layout_constraintTop_toBottomOf="@id/logoKidsnesia"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,6 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@drawable/logo_kidsnesia"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
